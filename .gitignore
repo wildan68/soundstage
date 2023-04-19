@@ -30,3 +30,7 @@ coverage
 # iconify dist files
 src/@iconify/*.js
 
+# component & auto import
+components.d.ts
+auto-imports.d.ts
+

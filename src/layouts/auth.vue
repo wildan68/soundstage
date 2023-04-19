@@ -69,4 +69,24 @@ import { appLoad } from '@/@core/app'
 :deep(.v-responsive) {
   flex: none !important;
 }
+
+:deep(.v-field__input), :deep(.v-field__append-inner), :deep(.v-text-field__prefix) {
+  padding-block: 16px;
+}
+
+:deep(.v-label.v-field-label) {
+  top: 14px !important;
+}
+
+:deep(.v-divider) {
+  flex: 1 !important;
+}
+
+:deep(.v-field__outline__start) {
+  border-radius: 8px 0 0 8px !important;
+}
+
+:deep(.v-field__outline__end) {
+  border-radius: 0 8px 8px 0 !important;
+}
 </style>
