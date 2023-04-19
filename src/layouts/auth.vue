@@ -7,7 +7,7 @@ import { appLoad } from '@/@core/app'
 
 <template>
   <VScaleTransition origin="center center">
-    <!-- 👉 App Load -->
+    <!-- 👉 App Loads -->
     <AppLoad v-if="appLoad" />
     <!-- 👉 Content -->
     <VRow
