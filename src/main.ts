@@ -8,6 +8,11 @@ import '@/assets/base.css'
 // Vuetify
 import vuetify from '@/plugins/vuetify'
 
+// Swiper
+import { Swiper, SwiperSlide } from '@/plugins/swiper'
+
+import 'swiper/swiper-bundle.css'
+
 import App from '@/App.vue'
 import router from '@/router'
 
@@ -17,5 +22,7 @@ app.use(createPinia())
 app.use(router)
 
 app.use(vuetify)
+app.component('Swiper', Swiper)
+app.component('SwiperSlide', SwiperSlide)
 
 app.mount('#app')

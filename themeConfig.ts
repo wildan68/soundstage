@@ -1,11 +1,20 @@
 import Logo from '@core/icons/Logo.vue'
 
+const { VITE_APP_NAME: appName } = import.meta.env
+
 export const themeConfig = {
   app: {
-    name: 'soundstage',
+    name: appName,
     logo: Logo,
-    copyright: `© 2015 - ${new Date().getFullYear()} soundstage. All Rights Reserved`,
+    copyright: `© 2015 - ${new Date().getFullYear()} ${appName}. All Rights Reserved`,
     appLoadInterval: 2000,
+    search: {
+      placeholder: [
+        'Pop, Rock or Metal Festival',
+        'Kpop, Jazz or EDM Festival',
+        'Everything is here',
+      ],
+    },
   },
   screen: {
     mobile: 720,

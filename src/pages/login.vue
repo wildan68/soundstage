@@ -21,9 +21,12 @@ const isPasswordVisible = ref(false)
           @click:append-inner="isPasswordVisible = !isPasswordVisible"
         />
         <div class="text-right">
-          <span class="text-primary font-weight-bold text-sm">Forgot Password?</span>
+          <span class="text-primary font-weight-bold text-sm cursor-pointer">Forgot Password?</span>
         </div>
-        <VBtn height="44px">
+        <VBtn
+          height="44px"
+          @click="$router.push('/')"
+        >
           Login
         </VBtn>
       </VForm>

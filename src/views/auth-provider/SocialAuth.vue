@@ -1,21 +1,23 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 interface SocialAuth {
   key: string
-  icon: string
+  icon: Component
 }
 
 const socialAuth = reactive<SocialAuth[]>([
   {
     key: 'apple',
-    icon: 'tabler-brand-apple',
+    icon: defineAsyncComponent(() => import('@core/icons/Apple.vue')),
   },
   {
     key: 'google',
-    icon: 'tabler-brand-google',
+    icon: defineAsyncComponent(() => import('@core/icons/Google.vue')),
   },
   {
     key: 'facebook',
-    icon: 'tabler-brand-facebook',
+    icon: defineAsyncComponent(() => import('@core/icons/Facebook.vue')),
   },
 ])
 </script>
@@ -30,9 +32,9 @@ const socialAuth = reactive<SocialAuth[]>([
       :key="social.key"
       icon
       variant="outlined"
-      color="secondary"
+      color="grey-300"
     >
-      <VIcon :icon="social.icon" />
+      <Component :is="social.icon" />
     </VBtn>
   </VRow>
 </template>

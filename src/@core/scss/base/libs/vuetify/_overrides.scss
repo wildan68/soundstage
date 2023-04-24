@@ -221,6 +221,20 @@ h6,
   }
 }
 
+// 👉 VContainer
+.v-container {
+  @media (min-width: 1280px) {
+    max-width: 1280px !important;
+  }
+  padding: 28px 0 !important;
+}
+
+// 👉 VOverlay
+.v-overlay__scrim {
+  opacity: 0.4 !important;
+  background: #000 !important;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -233,6 +247,18 @@ h6,
   cursor: pointer;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
 a {
   text-decoration: none;
+}
+
+.swiper-button-disabled {
+  display: none !important;
 }

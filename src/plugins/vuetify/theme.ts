@@ -33,6 +33,8 @@ const theme: VuetifyOptions['theme'] = {
         'grey-700': '#616161',
         'grey-800': '#424242',
         'grey-900': '#212121',
+        'white': '#fff',
+        'black': '#353535',
         'perfect-scrollbar-thumb': '#DBDADE',
       },
 
@@ -75,6 +77,8 @@ const theme: VuetifyOptions['theme'] = {
         'grey-700': '#B6BEE3',
         'grey-800': '#CFD3EC',
         'grey-900': '#E7E9F6',
+        'white': '#353535',
+        'black': '#fff',
         'perfect-scrollbar-thumb': '#4A5072',
       },
       variables: {

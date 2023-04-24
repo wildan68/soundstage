@@ -32,7 +32,7 @@ export default defineConfig({
       ],
     }),
     Components({
-      dirs: ['src/@core/components', 'src/views/demos'],
+      dirs: ['src/@core/components'],
       dts: true,
     }),
     Layouts({
