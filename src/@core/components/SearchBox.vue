@@ -5,7 +5,9 @@
         <h4 class="text-black">
           Top Search
         </h4>
+
         <VSpacer class="my-4" />
+
         <div class="searh-box-grid">
           <VCard
             v-for="i in 5"
@@ -14,17 +16,20 @@
             class="card__items-result"
           >
             <VRow
-
               no-gutters
               class="gap-x-4"
             >
-              <VCard
+              <VImg
+                src="/concert-1.jpg"
                 width="80px"
                 height="50px"
                 color="secondary"
+                cover
               />
+
               <VCol class="text-sm d-flex flex-column gap-y-2">
                 <span class="text-black font-weight-semibold">Stockholm Music Festival</span>
+
                 <VRow no-gutters>
                   <VRow
                     no-gutters
@@ -36,6 +41,7 @@
                     />
                     <span class="text-xs">25 May 2023</span>
                   </VRow>
+
                   <VRow
                     no-gutters
                     class="gap-x-1"
@@ -87,5 +93,11 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 12px;
   grid-auto-flow: column;
+}
+
+// 👉 Override VImg
+:deep(.v-responsive) {
+  flex: none !important;
+  border-radius: 8px !important;
 }
 </style>

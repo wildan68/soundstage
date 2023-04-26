@@ -52,7 +52,7 @@ const theme: VuetifyOptions['theme'] = {
       dark: true,
       colors: {
         // 'primary': localStorage.getItem(`${themeConfig.app.title}-darkThemePrimaryColor`) || '#7367F0',
-        'primary': '#7367F0',
+        'primary': '#FF793F',
         'on-primary': '#fff',
         'secondary': '#A8AAAE',
         'on-secondary': '#fff',

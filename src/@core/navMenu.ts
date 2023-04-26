@@ -2,13 +2,9 @@ import type { NavMenu } from './types'
 
 export default [
   {
-    key: 'home',
-    label: 'Home',
-    to: '',
-  }, {
-    key: 'create-event',
-    label: 'Create Event',
-    to: 'create-event',
+    key: 'event-partner',
+    label: 'Event Partner',
+    to: 'event-partner',
   }, {
     key: 'how-to-buy',
     label: 'How to Buy',

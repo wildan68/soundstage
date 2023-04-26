@@ -1,19 +1,19 @@
 import { useInterval } from '@vueuse/core'
 import { useSwiper } from 'swiper/vue'
-import { Autoplay, Navigation, Pagination } from 'swiper'
+import { Autoplay as VSAutoplay, Navigation as VSNavigation, Pagination as VSPagination } from 'swiper'
 import navMenu from './navMenu'
 import footer from './footer'
 import { themeConfig } from '@themeConfig'
 
-const appLoad = ref<boolean>(true)
+export const appLoad = ref<boolean>(true)
 
-const searchPlaceholderList: string[] = themeConfig.app.search.placeholder
+export const searchPlaceholderList: string[] = themeConfig.app.search.placeholder
 
-const { counter, reset } = useInterval(2000, { controls: true })
+export const { counter, reset } = useInterval(2000, { controls: true })
 
-const searchPlaceholder = ref<string>(searchPlaceholderList[counter.value])
+export const searchPlaceholder = ref<string>(searchPlaceholderList[counter.value])
 
-const searchBox = ref<boolean>(false)
+export const searchBox = ref<boolean>(false)
 
 watch(counter, (value) => {
   searchPlaceholder.value = searchPlaceholderList[value]
@@ -22,14 +22,24 @@ watch(counter, (value) => {
     reset()
 })
 
+export const useRandom = (min: number, max: number) => {
+  const length = Math.floor(Math.random() * (max - min + 1) + min)
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
+  for (let i = 0; i < length; i++)
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+
+  return result
+}
+
+export const useNumberDot = (number: number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
 export {
-  searchPlaceholder,
-  appLoad,
   navMenu,
   footer,
-  searchBox,
   useSwiper,
-  Autoplay,
-  Navigation,
-  Pagination,
+  VSAutoplay,
+  VSNavigation,
+  VSPagination,
 }

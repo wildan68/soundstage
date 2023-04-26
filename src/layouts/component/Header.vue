@@ -17,11 +17,14 @@ const onFocus = ref<boolean>(false)
   <div :class="transparent ? 'header-wrapper__transparent' : 'header-wrapper'">
     <VContainer>
       <VRow no-gutters>
-        <Component
-          :is="themeConfig.app.logo"
-          width="187px"
-          :light="transparent"
-        />
+        <RouterLink to="/">
+          <Component
+            :is="themeConfig.app.logo"
+            width="187px"
+            :light="transparent"
+            class="cursor-pointer"
+          />
+        </RouterLink>
         <div class="d-flex justify-end flex-1 align-center gap-x-5">
           <RouterLink
             v-for="menu in navMenu"

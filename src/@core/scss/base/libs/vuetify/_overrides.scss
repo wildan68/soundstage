@@ -235,6 +235,18 @@ h6,
   background: #000 !important;
 }
 
+// Swiper Pagination
+.swiper-pagination-bullet {
+  background: rgba(var(--v-theme-primary), 1) !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 14px !important;
+  height: 14px !important;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -253,6 +265,18 @@ h6,
 
 .relative {
   position: relative;
+}
+
+.w-fit-content {
+  width: fit-content;
+}
+
+.h-fit-content {
+  height: fit-content;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 a {
