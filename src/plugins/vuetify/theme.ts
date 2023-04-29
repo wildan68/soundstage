@@ -33,7 +33,12 @@ const theme: VuetifyOptions['theme'] = {
         'grey-700': '#616161',
         'grey-800': '#424242',
         'grey-900': '#212121',
+        'white': '#fff',
+        'white-persistent': '#fff',
+        'black': '#353535',
+        'black-persistent': '#353535',
         'perfect-scrollbar-thumb': '#DBDADE',
+        'switch': '#E0E0E0',
       },
 
       variables: {
@@ -50,7 +55,7 @@ const theme: VuetifyOptions['theme'] = {
       dark: true,
       colors: {
         // 'primary': localStorage.getItem(`${themeConfig.app.title}-darkThemePrimaryColor`) || '#7367F0',
-        'primary': '#7367F0',
+        'primary': '#FF793F',
         'on-primary': '#fff',
         'secondary': '#A8AAAE',
         'on-secondary': '#fff',
@@ -75,7 +80,12 @@ const theme: VuetifyOptions['theme'] = {
         'grey-700': '#B6BEE3',
         'grey-800': '#CFD3EC',
         'grey-900': '#E7E9F6',
+        'white': '#353535',
+        'white-persistent': '#fff',
+        'black': '#fff',
+        'black-persistent': '#353535',
         'perfect-scrollbar-thumb': '#4A5072',
+        'switch': '#FF793F',
       },
       variables: {
         'border-color': '#CFD3EC',

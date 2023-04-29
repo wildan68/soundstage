@@ -53,10 +53,6 @@ module.exports = {
       },
     ],
 
-    // Plugin: eslint-plugin-import
-    'import/prefer-default-export': 'off',
-    'import/newline-after-import': ['error', { count: 1 }],
-
     // ignore virtual files
     'import/no-unresolved': [2, {
       ignore: [
@@ -92,11 +88,12 @@ module.exports = {
     'vue/html-comment-indent': 'error',
     'vue/match-component-file-name': 'error',
     'vue/no-child-content': 'error',
+    'vue/require-default-prop': 'off',
 
     // NOTE this rule only supported in SFC,  Users of the unplugin-vue-define-options should disable that rule: https://github.com/vuejs/eslint-plugin-vue/issues/1886
     // 'vue/no-duplicate-attr-inheritance': 'error',
     'vue/no-empty-component-block': 'error',
-    'vue/no-multiple-objects-in-class': 'error',
+    // 'vue/no-multiple-objects-in-class': 'error',
     'vue/no-reserved-component-names': 'error',
     'vue/no-template-target-blank': 'error',
     'vue/no-useless-mustaches': 'error',

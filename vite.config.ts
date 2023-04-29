@@ -8,6 +8,7 @@ import vuetify from 'vite-plugin-vuetify'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import Components from 'unplugin-vue-components/vite'
 import Layouts from 'vite-plugin-vue-layouts'
+import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,13 +33,14 @@ export default defineConfig({
       ],
     }),
     Components({
-      dirs: ['src/@core/components', 'src/views/demos'],
+      dirs: ['src/@core/components'],
       dts: true,
     }),
     Layouts({
       layoutsDirs: './src/layouts/',
     }),
     DefineOptions(),
+    ViteMinifyPlugin(),
   ],
   define: { 'process.env': {} },
   resolve: {

@@ -221,6 +221,42 @@ h6,
   }
 }
 
+// 👉 VContainer
+.v-container {
+  @media (min-width: 1280px) {
+    max-width: 1280px !important;
+  }
+  padding: 28px 0 !important;
+}
+
+// 👉 VOverlay
+.v-overlay__scrim {
+  opacity: 0.4 !important;
+  background: #000 !important;
+}
+
+// 👉 VExpansionPanel
+.v-expansion-panel-title__overlay {
+  opacity: 0 !important;
+}
+
+.v-expansion-panel-title {
+  font-weight: bold !important;
+  color: rgb(var(--v-theme-black)) !important;
+}
+
+// 👉 Swiper Pagination
+.swiper-pagination-bullet {
+  background: rgba(var(--v-theme-primary), 1) !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 14px !important;
+  height: 14px !important;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -233,6 +269,30 @@ h6,
   cursor: pointer;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.w-fit-content {
+  width: fit-content;
+}
+
+.h-fit-content {
+  height: fit-content;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
 a {
   text-decoration: none;
+}
+
+.swiper-button-disabled {
+  display: none !important;
 }

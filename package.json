@@ -15,14 +15,15 @@
   },
   "dependencies": {
     "@tabler/icons": "^1.97.0",
-    "@vueuse/core": "^9.5.0",
+    "@vueuse/core": "^10.0.2",
     "@vueuse/math": "^9.5.0",
     "pinia": "^2.0.32",
     "sass": "^1.60.0",
+    "swiper": "^9.2.4",
     "unplugin-vue-define-options": "^0.12.8",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
-    "vuetify": "^3.1.12"
+    "vuetify": "^3.1.16"
   },
   "devDependencies": {
     "@antfu/eslint-config-vue": "^0.31.0",
@@ -51,6 +52,7 @@
     "unplugin-auto-import": "^0.15.2",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.1.4",
+    "vite-plugin-minify": "^1.5.2",
     "vite-plugin-pages": "^0.29.0",
     "vite-plugin-vue-layouts": "^0.8.0",
     "vite-plugin-vuetify": "^1.0.2",
