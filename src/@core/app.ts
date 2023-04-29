@@ -1,9 +1,10 @@
-import { useInterval } from '@vueuse/core'
 import { useSwiper } from 'swiper/vue'
 import { Autoplay as VSAutoplay, Navigation as VSNavigation, Pagination as VSPagination } from 'swiper'
 import navMenu from './navMenu'
 import footer from './footer'
 import { themeConfig } from '@themeConfig'
+
+export const isDark = ref<boolean>(false)
 
 export const appLoad = ref<boolean>(true)
 

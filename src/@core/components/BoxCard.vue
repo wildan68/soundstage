@@ -110,7 +110,9 @@ const onFilterChange = (id: string) => {
             v-for="item in items"
             :key="item.id"
           >
-            <EventCard :data="item" />
+            <RouterLink :to="`/${item.slug}`">
+              <EventCard :data="item" />
+            </RouterLink>
           </VSwiperSlide>
         </VSwiper>
       </div>
@@ -156,9 +158,9 @@ const onFilterChange = (id: string) => {
     background: url('@images/vec/blob-1.png') no-repeat;
     position: absolute;
     left: -24px;
-    bottom: -21%;
+    bottom: -24px;
     width: 100%;
-    height: 100%;
+    height: 80%;
   }
 }
 .btn-active {

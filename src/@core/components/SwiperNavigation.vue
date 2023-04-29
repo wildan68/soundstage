@@ -51,4 +51,8 @@ defineProps<Props>()
   z-index: 50;
   margin-right: -24px;
 }
+
+button:disabled {
+  display: none !important;
+}
 </style>

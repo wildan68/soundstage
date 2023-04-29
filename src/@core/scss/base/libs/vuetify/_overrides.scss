@@ -235,7 +235,17 @@ h6,
   background: #000 !important;
 }
 
-// Swiper Pagination
+// 👉 VExpansionPanel
+.v-expansion-panel-title__overlay {
+  opacity: 0 !important;
+}
+
+.v-expansion-panel-title {
+  font-weight: bold !important;
+  color: rgb(var(--v-theme-black)) !important;
+}
+
+// 👉 Swiper Pagination
 .swiper-pagination-bullet {
   background: rgba(var(--v-theme-primary), 1) !important;
   width: 12px !important;

@@ -2,7 +2,7 @@
 import AppLoad from './component/AppLoad.vue'
 import { themeConfig } from '@themeConfig'
 import FrameBGAuth from '@images/vec/frame_bg_auth.png'
-import { appLoad } from '@/@core/app'
+import { appLoad, isDark } from '@/@core/app'
 </script>
 
 <template>
@@ -16,7 +16,10 @@ import { appLoad } from '@/@core/app'
       class="mt-6 mx-14"
     >
       <div class="bg-container">
-        <Component :is="themeConfig.app.logo" />
+        <Component
+          :is="themeConfig.app.logo"
+          :light="isDark"
+        />
         <div class="text-2xl text-center font-weight-bold">
           Enjoy the convenience of buying the music<br>festival tickets you're looking for!
         </div>

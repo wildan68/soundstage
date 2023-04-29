@@ -37,9 +37,11 @@ const couponList = [
           color="white"
         />
       </div>
+
       <h1 class="text-black">
         Interesting Promo Coupons for you, let's see...
       </h1>
+
       <VBtn
         variant="tonal"
         width="fit-content"
@@ -65,9 +67,11 @@ const couponList = [
               :src="coupon.image"
               cover
               aspect-ratio="16/9"
+              eager
             />
           </VSwiperSlide>
         </VSwiper>
+
         <div class="coupon-list__pagination" />
       </div>
     </div>
@@ -86,11 +90,16 @@ const couponList = [
     cursor: pointer;
 
     &:nth-child(1) {
-        margin-left: 24px;
+      margin-left: 24px;
     }
 
     &:nth-last-child(1) {
-        margin-right: 24px;
+      margin-right: 24px;
+    }
+
+    img {
+      object-fit: cover;
+      aspect-ratio: 16/9;
     }
   }
 
@@ -100,5 +109,10 @@ const couponList = [
     margin-top: 24px;
     align-items: center;
   }
+}
+
+// 👉 Override VImg
+:deep(.v-responsive) {
+  flex: none !important;
 }
 </style>

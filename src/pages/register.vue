@@ -2,6 +2,7 @@
 import SocialAuth from '@/views/auth-provider/SocialAuth.vue'
 import { themeConfig } from '@themeConfig'
 import { useRegister } from '@/views/register/register'
+import { isDark } from '@/@core/app'
 
 const { step, activeStep } = useRegister()
 
@@ -71,6 +72,7 @@ const handlerNext = () => {
       <Component
         :is="themeConfig.app.logo"
         width="91px"
+        :light="isDark"
       />
       <div class="text-xs">
         {{ themeConfig.app.copyright }}

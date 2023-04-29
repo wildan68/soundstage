@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SocialAuth from '@/views/auth-provider/SocialAuth.vue'
 import { themeConfig } from '@themeConfig'
+import { isDark } from '@/@core/app'
 
 const isPasswordVisible = ref(false)
 </script>
@@ -65,6 +66,7 @@ const isPasswordVisible = ref(false)
       <Component
         :is="themeConfig.app.logo"
         width="91px"
+        :light="isDark"
       />
       <div class="text-xs">
         {{ themeConfig.app.copyright }}

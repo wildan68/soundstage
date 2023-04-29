@@ -6,6 +6,7 @@ export interface ItemsFilterBoxCard {
 
 export interface ItemsCard {
     id: string
+    slug: string
     image: string
     title: string
     location: string

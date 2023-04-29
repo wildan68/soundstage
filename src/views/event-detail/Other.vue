@@ -1,42 +1,18 @@
 <script setup lang="ts">
-import type { ItemsCard, ItemsFilterBoxCard } from '@/@core/components/types'
-import CouponPromo from '@/views/home/CouponPromo.vue'
+import type { ItemsCard } from '@/@core/components/types'
 
-const todayFilter: ItemsFilterBoxCard[] = [
-  {
-    id: 'jakarta',
-    label: 'Jakarta',
-  }, {
-    id: 'bandung',
-    label: 'Bandung',
-  }, {
-    id: 'bekasi',
-    label: 'Bekasi',
-  }, {
-    id: 'semarang',
-    label: 'Semarang',
-  },
-]
+interface Emit {
+  (e: 'change', val: string): void
+}
 
-const bestDealsFilter: ItemsFilterBoxCard[] = [
-  {
-    id: '30',
-    label: 'Off 30%',
-    icon: 'tabler-discount-2',
-  }, {
-    id: '23',
-    label: 'Off 23%',
-    icon: 'tabler-discount-2',
-  }, {
-    id: '18',
-    label: 'Off 18%',
-    icon: 'tabler-discount-2',
-  }, {
-    id: '8',
-    label: 'Off 8%',
-    icon: 'tabler-discount-2',
-  },
-]
+const emit = defineEmits<Emit>()
+
+const other = ref<HTMLElement>()
+
+useIntersectionObserver(
+  other,
+  ([{ isIntersecting }]) => isIntersecting && emit('change', 'other'),
+)
 
 const dummyEvent: ItemsCard[] = [{
   id: '1',
@@ -95,34 +71,13 @@ const dummyEvent: ItemsCard[] = [{
   location: 'Bandung',
   date: '2023-13-12',
 }]
-
-const onFilterChange = (id: string) => {
-  console.log(id)
-}
 </script>
 
 <template>
-  <VContainer class="d-flex flex-column gap-6">
-    <CouponPromo />
-    <BoxCard
-      title="Today Event"
-      subtitle="Today's best local music event"
-      :filter="todayFilter"
-      :items="dummyEvent"
-      @change-filter="onFilterChange"
-    />
-    <BoxCard
-      title="Biggest Music Festival"
-      subtitle="Local and International music festival events"
-      :items="dummyEvent"
-      variant="event"
-    />
-    <BoxCard
-      title="Best Deals"
-      subtitle="Tickets with attractive promos for you"
-      :filter="bestDealsFilter"
-      :items="dummyEvent"
-      @change-filter="onFilterChange"
-    />
-  </VContainer>
+  <BoxCard
+    ref="other"
+    title="More Event"
+    :items="dummyEvent"
+  />
 </template>
+

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import ThemeSwitcher from './ThemeSwitcher.vue'
+import { isDark, navMenu, searchBox, searchPlaceholder } from '@core/app'
 import { themeConfig } from '@themeConfig'
-import { navMenu, searchBox, searchPlaceholder } from '@core/app'
 
 interface Props {
   transparent: boolean
@@ -21,44 +22,52 @@ const onFocus = ref<boolean>(false)
           <Component
             :is="themeConfig.app.logo"
             width="187px"
-            :light="transparent"
+            :light="transparent || isDark"
             class="cursor-pointer"
           />
         </RouterLink>
+
         <div class="d-flex justify-end flex-1 align-center gap-x-5">
           <RouterLink
             v-for="menu in navMenu"
             :key="menu.key"
             :to="`/${menu.to}`"
-            :class="transparent ? 'text-background' : 'text-black'"
+            :class="transparent ? 'text-white-persistent' : 'text-black'"
           >
             {{ menu.label }}
           </RouterLink>
+
           <VBtn
             variant="text"
-            :color="transparent ? 'background' : 'black'"
+            :color="transparent ? 'white-persistent' : 'black'"
             icon
           >
             <VIcon icon="tabler-bell" />
           </VBtn>
+
           <VAvatar
-            :color="transparent ? 'background' : 'black'"
+            :color="transparent ? 'white-persistent' : 'black'"
             size="28"
           />
+
           <VBtn
             variant="text"
-            :color="transparent ? 'white' : 'black'"
+            :color="transparent ? 'white-persistent' : 'black'"
             @click="$router.push('/login')"
           >
             Login
           </VBtn>
+
           <VBtn
             @click="$router.push('/register')"
           >
             Register
           </VBtn>
+
+          <ThemeSwitcher />
         </div>
       </VRow>
+
       <div v-if="!transparent">
         <VDivider
           thickness="2px"
@@ -90,13 +99,12 @@ const onFocus = ref<boolean>(false)
 
 <style scoped lang="scss">
 .header-wrapper {
-    background: rgb(var(--v-theme-white));
-    // shadow bottom smooth
-    box-shadow: 0 0 10px 0 rgb(var(--v-theme-black), 0.1);
+  background: rgb(var(--v-theme-white));
+  box-shadow: 0 0 10px 0 rgb(var(--v-theme-black), 0.1);
 
-    &__transparent {
-        background: transparent;
-    }
+  &__transparent {
+    background: transparent;
+  }
 }
 
 // 👉 Override TextField

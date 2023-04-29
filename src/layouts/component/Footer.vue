@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { footer } from '@core/app'
+import { footer, isDark } from '@core/app'
 import { themeConfig } from '@themeConfig'
 import GetItOnPlaystore from '@images/get-it-on-playstore.png'
 import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
@@ -50,6 +50,7 @@ import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
         <Component
           :is="themeConfig.app.logo"
           width="187px"
+          :light="isDark"
         />
         <div class="text-sm">
           {{ themeConfig.app.copyright }}
