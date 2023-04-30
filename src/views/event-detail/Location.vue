@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import DemoMapBase from '@images/demo-map-base.png'
+
 interface Emit {
   (e: 'change', val: string): void
 }
@@ -22,17 +24,80 @@ useIntersectionObserver(
   >
     <VExpansionPanel title="Location">
       <VExpansionPanelText>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.341903161003!2d106.799221974315!3d-6.218564760905644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f14d30079f01%3A0x2e74f2341fff266d!2sStadion%20Utama%20Gelora%20Bung%20Karno!5e0!3m2!1sid!2sid!4v1682730623613!5m2!1sid!2sid"
-          width="100%"
-          height="450"
-          style="border:0;"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        />
+        <VImg :src="DemoMapBase">
+          <div class="map-overlay">
+            <div class="map-overlay__content">
+              <VRow
+                no-gutters
+                class="gap-2"
+              >
+                <VIcon icon="tabler-map-pin" />
+                <div class="d-flex flex-column gap-1 flex-1">
+                  <span class="font-weight-bold text-black">Main Stadium</span>
+
+                  <span class="text-secondary text-sm">Stadium Street, Central Jakarta, Jakarta, Indonesia</span>
+                </div>
+              </VRow>
+              <VRow
+                no-gutters
+                class="justify-end flex-1 gap-6"
+              >
+                <div class="d-flex flex-column gap-1 align-center">
+                  <VBtn
+                    icon
+                    variant="tonal"
+                    size="x-large"
+                  >
+                    <VIcon
+                      icon="tabler-map-pin-share"
+                      size="32px"
+                    />
+                  </VBtn>
+
+                  <span class="font-weight-semibold text-primary">Directions</span>
+                </div>
+
+                <div class="d-flex flex-column gap-1 align-center">
+                  <VBtn
+                    icon
+                    size="x-large"
+                  >
+                    <VIcon
+                      icon="tabler-map-search"
+                      size="32px"
+                    />
+                  </VBtn>
+
+                  <span class="font-weight-semibold text-primary">Events Guide</span>
+                </div>
+              </VRow>
+            </div>
+          </div>
+        </VImg>
       </VExpansionPanelText>
     </VExpansionPanel>
   </VExpansionPanels>
 </template>
 
+<style scoped lang="scss">
+.map-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(var(--v-theme-white)) 70%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  padding: 24px;
+
+  &__content {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center
+  }
+}
+
+:deep(.v-btn) {
+  border-radius: 50% !important;
+}
+</style>
