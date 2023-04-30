@@ -15,7 +15,7 @@ const changeTab = (val: string) => intersectionKey.value = val
 
 const changeTabMenu = (val: string) => {
   changeTab(val)
-  const el = document.getElementById(val)
+  const el = document.getElementById(val === 'description' ? 'summary' : val)
   window.scrollTo({ top: (el?.offsetTop as number) - 280, behavior: 'smooth' })
 }
 </script>
