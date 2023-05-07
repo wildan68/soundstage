@@ -62,7 +62,7 @@ import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
 
 <style scoped lang="scss">
 .footer-wrapper {
-  background: rgb(var(--v-theme-white));
+  background: rgb(var(--v-theme-surface));
 }
 
 :deep(.v-responsive) {
