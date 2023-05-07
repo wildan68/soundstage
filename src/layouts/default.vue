@@ -24,7 +24,7 @@ const isHome = computed(() => route.path === '/')
     <!-- 👉 Content -->
     <div v-else>
       <Teleport
-        to="body"
+        to=".v-application__wrap"
         :disabled="!isHome"
       >
         <VFadeTransition>

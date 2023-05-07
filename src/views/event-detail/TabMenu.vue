@@ -56,7 +56,7 @@ const menu = [{
 
 <style scoped lang="scss">
 .menu-wrapper {
-  background: rgb(var(--v-theme-white));
+  background: rgb(var(--v-theme-surface));
   position: sticky;
   top: 203px;
   z-index: 20;

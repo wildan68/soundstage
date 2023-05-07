@@ -48,6 +48,8 @@ const onFocus = ref<boolean>(false)
           <VAvatar
             :color="transparent ? 'white-persistent' : 'black'"
             size="28"
+            class="cursor-pointer"
+            @click="$router.push('/profile')"
           />
 
           <VBtn
@@ -99,7 +101,7 @@ const onFocus = ref<boolean>(false)
 
 <style scoped lang="scss">
 .header-wrapper {
-  background: rgb(var(--v-theme-white));
+  background: rgb(var(--v-theme-surface));
   box-shadow: 0 0 10px 0 rgb(var(--v-theme-black), 0.1);
 
   &__transparent {
