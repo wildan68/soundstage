@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TabMenu from '../../views/event-detail/TabMenu.vue'
+import DetailTabMenu from '../../views/event-detail/DetailTabMenu.vue'
 import Summary from '../../views/event-detail/Summary.vue'
 import Description from '../../views/event-detail/Description.vue'
 import Package from '../../views/event-detail/Package.vue'
@@ -22,7 +22,7 @@ const changeTabMenu = (val: string) => {
 
 <template>
   <Image />
-  <TabMenu
+  <DetailTabMenu
     :active-key="intersectionKey"
     @change="changeTabMenu"
   />

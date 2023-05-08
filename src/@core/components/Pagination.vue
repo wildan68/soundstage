@@ -1,5 +1,24 @@
 <script setup lang="ts">
-const perPage = ref<number>(9)
+interface Props {
+  perPage: number
+  itemsPage: number[]
+}
+
+interface Emit {
+  (e: 'update:perPage', val: number): void
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  perPage: 9,
+  itemsPage: () => [9, 18, 27, 36, 45],
+})
+
+const emit = defineEmits<Emit>()
+
+const perPage = computed({
+  get: () => props.perPage,
+  set: (val: number) => emit('update:perPage', val),
+})
 </script>
 
 <template>
@@ -10,7 +29,7 @@ const perPage = ref<number>(9)
     <div>
       <VSelect
         v-model="perPage"
-        :items="[9, 18, 27, 36, 45]"
+        :items="itemsPage"
         bg-color="white"
         variant="tonal"
       />
@@ -21,7 +40,7 @@ const perPage = ref<number>(9)
       class="gap-2 justify-end"
     >
       <VBtn
-        color="white"
+        color="surface"
         icon
         disabled
       >
@@ -36,14 +55,14 @@ const perPage = ref<number>(9)
       </VBtn>
 
       <VBtn
-        color="white"
+        color="surface"
         icon
       >
         2
       </VBtn>
 
       <VBtn
-        color="white"
+        color="surface"
         icon
         disabled
       >
@@ -51,21 +70,21 @@ const perPage = ref<number>(9)
       </VBtn>
 
       <VBtn
-        color="white"
+        color="surface"
         icon
       >
         8
       </VBtn>
 
       <VBtn
-        color="white"
+        color="surface"
         icon
       >
         9
       </VBtn>
 
       <VBtn
-        color="white"
+        color="surface"
         icon
       >
         <VIcon icon="tabler-chevron-right" />

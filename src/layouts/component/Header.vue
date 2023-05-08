@@ -2,6 +2,7 @@
 import ThemeSwitcher from './ThemeSwitcher.vue'
 import { isDark, navMenu, searchBox, searchPlaceholder } from '@core/app'
 import { themeConfig } from '@themeConfig'
+import NotFoundVec from '@images/vec/not-found.png'
 
 interface Props {
   transparent: boolean
@@ -12,6 +13,8 @@ withDefaults(defineProps<Props>(), {
 })
 
 const onFocus = ref<boolean>(false)
+
+const notificationTab = ref<string>('pending')
 </script>
 
 <template>
@@ -37,20 +40,143 @@ const onFocus = ref<boolean>(false)
             {{ menu.label }}
           </RouterLink>
 
-          <VBtn
-            variant="text"
-            :color="transparent ? 'white-persistent' : 'black'"
-            icon
-          >
-            <VIcon icon="tabler-bell" />
-          </VBtn>
+          <VMenu :close-on-content-click="false">
+            <template #activator="{ props }">
+              <VBtn
+                variant="text"
+                :color="transparent ? 'white-persistent' : 'black'"
+                icon
+                v-bind="props"
+              >
+                <VIcon icon="tabler-bell" />
+              </VBtn>
+            </template>
+            <VCard
+              class="my-4"
+              width="400px"
+            >
+              <VCardTitle>
+                <VRow
+                  no-gutters
+                  class="justify-space-between align-center  my-4"
+                >
+                  <div class="font-weight-semibold">
+                    Notification
+                  </div>
 
-          <VAvatar
-            :color="transparent ? 'white-persistent' : 'black'"
-            size="28"
-            class="cursor-pointer"
-            @click="$router.push('/profile')"
-          />
+                  <VBtn
+                    icon
+                    variant="text"
+                    color="black"
+                  >
+                    <VIcon icon="tabler-settings-2" />
+                  </VBtn>
+                </VRow>
+              </VCardTitle>
+              <VCardText>
+                <VTabs
+                  v-model="notificationTab"
+                  grow
+                >
+                  <VTab value="pending">
+                    Pending (3)
+                  </VTab>
+
+                  <VTab value="purchased">
+                    Purchased
+                  </VTab>
+                </VTabs>
+              </VCardText>
+
+              <VCardText>
+                <VWindow v-model="notificationTab">
+                  <VWindowItem value="pending">
+                    <div
+                      v-for="i in 3"
+                      :key="i"
+                      class="notification-item"
+                    >
+                      <VIcon
+                        icon="tabler-notification"
+                        color="black"
+                      />
+                      <div class="d-flex flex-column gap-2 flex-1">
+                        <div class="text-black font-weight-semibold">
+                          Jakarta Music Fair: 2023
+                        </div>
+                        <div class="text-secondary">
+                          You have not made any payments for this event. make payment now.
+                        </div>
+                      </div>
+                    </div>
+                  </VWindowItem>
+
+                  <VWindowItem value="purchased">
+                    <div class="d-flex flex-column align-center gap-6">
+                      <VImg
+                        :src="NotFoundVec"
+                        width="60%"
+                        class="ml-10"
+                      />
+                      <div class="font-weight-semibold text-black text-center">
+                        No payment has been completed yet.
+                      </div>
+                    </div>
+                  </VWindowItem>
+                </VWindow>
+              </VCardText>
+            </VCard>
+          </VMenu>
+
+          <VMenu :close-on-content-click="false">
+            <template #activator="{ props }">
+              <VAvatar
+                color="info"
+                size="28"
+                class="cursor-pointer"
+                v-bind="props"
+              />
+            </template>
+            <VCard
+              class="my-4"
+              width="200px"
+            >
+              <VCardText class="d-flex flex-column gap-2 align-center">
+                <VAvatar
+                  color="info"
+                  size="48"
+                />
+
+                <span class="font-weight-semibold text-black text-center text-lg">Seteven Joe</span>
+              </VCardText>
+
+              <VDivider />
+
+              <div class="d-flex flex-column">
+                <div
+                  v-ripple
+                  class="profile-menu"
+                  @click="$router.push('/profile')"
+                >
+                  My Account
+                </div>
+
+                <div
+                  v-ripple
+                  class="profile-menu"
+                >
+                  Help Center
+                </div>
+
+                <div
+                  v-ripple
+                  class="profile-menu"
+                >
+                  Logout
+                </div>
+              </div>
+            </VCard>
+          </VMenu>
 
           <VBtn
             variant="text"
@@ -61,6 +187,7 @@ const onFocus = ref<boolean>(false)
           </VBtn>
 
           <VBtn
+            variant="outlined"
             @click="$router.push('/register')"
           >
             Register
@@ -88,7 +215,7 @@ const onFocus = ref<boolean>(false)
           <VFadeTransition group>
             <div
               v-if="onFocus"
-              class="input-search__overlay"
+              class="overlay"
               @click="onFocus = false"
             />
             <SearchBox v-if="onFocus" />
@@ -102,7 +229,7 @@ const onFocus = ref<boolean>(false)
 <style scoped lang="scss">
 .header-wrapper {
   background: rgb(var(--v-theme-surface));
-  box-shadow: 0 0 10px 0 rgb(var(--v-theme-black), 0.1);
+  box-shadow: 0 0 10px 0 rgb(var(--v-theme-black-persistent), 0.1);
 
   &__transparent {
     background: transparent;
@@ -131,21 +258,43 @@ const onFocus = ref<boolean>(false)
 .input-search {
   width: 40%;
   position: relative;
+}
 
-  &__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #000;
-    opacity: 0.4;
-    z-index: 99;
-  }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+  opacity: 0.4;
+  z-index: 99;
 }
 
 // 👉 Override Input SearchBox
 :deep(.v-input__control) {
   z-index: 100 !important;
+}
+
+.profile-menu {
+  padding: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(var(--v-theme-surface));
+  }
+}
+
+.notification-item {
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(var(--v-theme-background));
+  }
 }
 </style>
