@@ -5,8 +5,8 @@ import NotFoundVec from '@images/vec/not-found.png'
 <template>
   <div class="d-flex flex-column gap-6">
     <VCard
-      title="My Coupon"
-      subtitle="List of promo coupons that you have"
+      title="Bookmark"
+      subtitle="Let's, buy the event ticket you saved"
     />
     <VCard>
       <VCardText class="d-flex flex-column justify-center align-center gap-6">
