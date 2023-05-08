@@ -58,7 +58,7 @@ const menu = [{
 .menu-wrapper {
   background: rgb(var(--v-theme-surface));
   position: sticky;
-  top: 203px;
+  top: 200px;
   z-index: 20;
 }
 

@@ -84,7 +84,10 @@ const profileMenu: ProfileMenu[] = [
 </script>
 
 <template>
-  <VCard width="275px">
+  <VCard
+    width="275px"
+    height="fit-content"
+  >
     <VCardText class="d-flex flex-column gap-3">
       <div class="text-2xl font-weight-semibold text-black">
         Steven Joe

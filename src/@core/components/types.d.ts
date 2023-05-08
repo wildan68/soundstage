@@ -13,3 +13,8 @@ export interface ItemsCard {
     date: string
     price: number
 }
+
+export interface TabMenuItems {
+    key: string
+    label: string
+}
