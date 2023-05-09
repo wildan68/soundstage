@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ItemsCard, ItemsFilterBoxCard } from '@/@core/components/types'
+import type { ItemsCard, ItemsFilterBoxCard } from '@core/components/types'
 import CouponPromo from '@/views/home/CouponPromo.vue'
 
 const todayFilter: ItemsFilterBoxCard[] = [
