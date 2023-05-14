@@ -9,11 +9,26 @@ defineProps<Props>()
 
 const ticketAvailableExpansion = ref<number>(0)
 
-const ticketAvailable = ref<string>('all')
+const ticketAvailableKey = ref<string>('all')
+
+const ticketAvailable: { value: string; label: string }[] = [
+  {
+    value: 'all',
+    label: 'All',
+  },
+  {
+    value: 'today',
+    label: 'Today',
+  },
+  {
+    value: 'tomorrow',
+    label: 'Tomorrow',
+  },
+]
 
 const priceRangeExpansion = ref<number>(0)
 
-const priceRange = ref<number[]>([0, 5000])
+const priceRange = ref<number[]>([0, 500])
 </script>
 
 <template>
@@ -44,23 +59,26 @@ const priceRange = ref<number[]>([0, 5000])
 
         <VExpansionPanelText>
           <VRadioGroup
-            v-model="ticketAvailable"
+            v-model="ticketAvailableKey"
             class="d-flex flex-column gap-2"
           >
-            <VRadio
-              label="All"
-              value="all"
-            />
+            <VRow
+              v-for="item in ticketAvailable"
+              :key="item.value"
+              no-gutters
+              class="justify-space-between w-100"
+            >
+              <VLabel
+                class="text-black flex-1"
+                :text="item.label"
+              />
 
-            <VRadio
-              label="Today"
-              value="today"
-            />
-
-            <VRadio
-              label="Tomorrow"
-              value="tomorrow"
-            />
+              <div>
+                <VRadio
+                  :value="item.value"
+                />
+              </div>
+            </VRow>
           </VRadioGroup>
         </VExpansionPanelText>
       </VExpansionPanel>
@@ -80,10 +98,14 @@ const priceRange = ref<number[]>([0, 5000])
           <VRangeSlider
             v-model="priceRange"
             strict
-            :max="10000"
+            :max="1000"
             :min="0"
             :step="1"
-          />
+          >
+            <template #thumb-label="{ modelValue }">
+              ${{ useNumberDot(modelValue) }}
+            </template>
+          </VRangeSlider>
 
           <VRow
             no-gutter

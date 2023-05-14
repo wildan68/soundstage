@@ -50,7 +50,7 @@ const couponList = [
         See all promos
       </VBtn>
     </div>
-    <div class="flex-1 bg-white coupon-list h-fit-content">
+    <div class="flex-1 bg-surface coupon-list h-fit-content">
       <div class="relative w-100">
         <VSwiper
           :space-between="30"

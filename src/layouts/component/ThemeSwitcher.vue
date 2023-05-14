@@ -7,6 +7,8 @@ const { global } = useTheme()
 const switchTheme = (val: boolean) => val ? global.name.value = 'dark' : global.name.value = 'light'
 
 watch(isDark, switchTheme)
+
+onMounted(() => switchTheme(isDark.value))
 </script>
 
 <template>

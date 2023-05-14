@@ -76,7 +76,7 @@ const dateList: DateFilter[] = [
 
   &__btn {
     height: 74px !important;
-    background: rgb(var(--v-theme-white)) !important;
+    background: rgb(var(--v-theme-surface)) !important;
     border: 1px solid rgb(var(--v-theme-secondary)) !important;
     color: rgb(var(--v-theme-secondary)) !important;
 

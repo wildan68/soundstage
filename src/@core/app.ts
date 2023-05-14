@@ -24,6 +24,8 @@ watch(placeholderCounter, (value) => {
     placeholderReset()
 })
 
+watch(isDark, (value: boolean) => localStorage.setItem('theme', value ? 'dark' : 'light'))
+
 export const usePlugins = (options: { [key: string]: Component }):
 { install(app: App): void } => {
   return {
@@ -46,6 +48,25 @@ export const useRandom = (min: number, max: number) => {
 }
 
 export const useNumberDot = (number: number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+export const useThemeConfig = () => {
+  const theme = localStorage.getItem('theme')
+
+  if (!theme) {
+    localStorage.setItem('theme', 'light')
+    isDark.value = false
+
+    return
+  }
+
+  if (theme === 'dark') {
+    isDark.value = true
+
+    return
+  }
+
+  isDark.value = false
+}
 
 export {
   navMenu,

@@ -12,7 +12,7 @@ defineProps<Props>()
 <template>
   <VBtn
     icon
-    color="white"
+    color="surface"
     class="nav-prev-class"
     :class="[config.prevEl.replace('.', '')]"
   >
@@ -24,7 +24,7 @@ defineProps<Props>()
 
   <VBtn
     icon
-    color="white"
+    color="surface"
     class="nav-next-class"
     :class="[config.nextEl.replace('.', '')]"
   >
