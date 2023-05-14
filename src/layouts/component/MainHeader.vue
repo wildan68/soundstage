@@ -1,6 +1,36 @@
 <script setup lang="ts">
 import Header from './Header.vue'
 import { searchBox, searchPlaceholder } from '@/@core/app'
+
+interface CategoryList {
+  key: string
+  label: string
+  icon: string
+  isHover: boolean
+  to?: string
+}
+
+const categoryList = reactive<CategoryList[]>([
+  {
+    key: 'popular',
+    label: 'Popular',
+    icon: 'tabler-star',
+    isHover: false,
+    to: '/popular',
+  }, {
+    key: 'today',
+    label: 'Today',
+    icon: 'tabler-category',
+    isHover: false,
+    to: '/',
+  }, {
+    key: 'discount',
+    label: 'Discount',
+    icon: 'tabler-discount-2',
+    isHover: false,
+    to: '/',
+  },
+])
 </script>
 
 <template>
@@ -30,9 +60,39 @@ import { searchBox, searchPlaceholder } from '@/@core/app'
               class="input-search__overlay"
               @click="searchBox = false"
             />
+
             <SearchBox v-if="searchBox" />
           </VFadeTransition>
         </div>
+
+        <VRow
+          no-gutters
+          class="gap-6 w-100 justify-center"
+        >
+          <RouterLink
+            v-for="cat in categoryList"
+            :key="cat.key"
+            v-ripple
+            :to="cat.to"
+            class="cat-container"
+            @mouseover="cat.isHover = true"
+            @mouseleave="cat.isHover = false"
+          >
+            <VBtn
+              variant="tonal"
+              icon
+              class="cat-container__btn"
+            >
+              <VIcon :icon="cat.icon" />
+            </VBtn>
+            <VExpandXTransition>
+              <span
+                v-show="cat.isHover"
+                class="mr-2"
+              >{{ cat.label }}</span>
+            </VExpandXTransition>
+          </RouterLink>
+        </VRow>
       </div>
       <VSpacer class="my-12" />
     </VContainer>
@@ -92,5 +152,21 @@ import { searchBox, searchPlaceholder } from '@/@core/app'
 // 👉 Override Input SearchBox
 :deep(.v-input__control) {
   z-index: 100 !important;
+}
+
+.cat-container {
+  padding: 8px;
+  background: rgb(var(--v-theme-surface));
+  border-radius: 48px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: rgb(var(--v-theme-primary));
+  font-weight: bold;
+  cursor: pointer;
+
+  &__btn {
+    border-radius: 50% !important;
+  }
 }
 </style>
