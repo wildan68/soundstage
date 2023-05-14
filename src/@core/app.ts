@@ -11,17 +11,17 @@ export const appLoad = ref<boolean>(true)
 
 export const searchPlaceholderList: string[] = themeConfig.app.search.placeholder
 
-export const { counter, reset } = useInterval(2000, { controls: true })
+export const { counter: placeholderCounter, reset: placeholderReset } = useInterval(2000, { controls: true })
 
-export const searchPlaceholder = ref<string>(searchPlaceholderList[counter.value])
+export const searchPlaceholder = ref<string>(searchPlaceholderList[placeholderCounter.value])
 
 export const searchBox = ref<boolean>(false)
 
-watch(counter, (value) => {
+watch(placeholderCounter, (value) => {
   searchPlaceholder.value = searchPlaceholderList[value]
 
-  if (counter.value === searchPlaceholderList.length)
-    reset()
+  if (placeholderCounter.value === searchPlaceholderList.length)
+    placeholderReset()
 })
 
 export const usePlugins = (options: { [key: string]: Component }):
