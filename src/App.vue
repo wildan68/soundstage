@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
+import { useThemeConfig } from '@core/app'
 
 const { global } = useTheme()
+
+useThemeConfig()
 </script>
 
 <template>

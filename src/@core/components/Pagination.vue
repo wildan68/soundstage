@@ -30,7 +30,7 @@ const perPage = computed({
       <VSelect
         v-model="perPage"
         :items="itemsPage"
-        bg-color="white"
+        bg-color="surface"
         variant="tonal"
       />
     </div>

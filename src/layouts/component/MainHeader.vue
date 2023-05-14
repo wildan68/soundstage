@@ -79,17 +79,19 @@ const categoryList = reactive<CategoryList[]>([
             @mouseleave="cat.isHover = false"
           >
             <VBtn
-              variant="tonal"
               icon
               class="cat-container__btn"
             >
               <VIcon :icon="cat.icon" />
             </VBtn>
+
             <VExpandXTransition>
               <span
                 v-show="cat.isHover"
                 class="mr-2"
-              >{{ cat.label }}</span>
+              >
+                {{ cat.label }}
+              </span>
             </VExpandXTransition>
           </RouterLink>
         </VRow>
@@ -156,7 +158,7 @@ const categoryList = reactive<CategoryList[]>([
 
 .cat-container {
   padding: 8px;
-  background: rgb(var(--v-theme-surface));
+  background: rgba(var(--v-theme-surface), 0.7);
   border-radius: 48px;
   display: flex;
   gap: 16px;
@@ -164,6 +166,11 @@ const categoryList = reactive<CategoryList[]>([
   color: rgb(var(--v-theme-primary));
   font-weight: bold;
   cursor: pointer;
+  animation: all 0.5s ease-in-out;
+
+  &:hover {
+    background: rgb(var(--v-theme-surface));
+  }
 
   &__btn {
     border-radius: 50% !important;
