@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Bulllet from '@core/icons/Bullet.vue'
 import { themeConfig } from '@themeConfig'
+import { isDark } from '@core/app'
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import { themeConfig } from '@themeConfig'
         <Component
           :is="themeConfig.app.logo"
           :bullet="false"
+          :light="isDark"
         />
         <div class="bullet-animation">
           <Bulllet />

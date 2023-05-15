@@ -42,11 +42,22 @@ const handlerNext = () => {
     <div class="d-flex flex-column gap-y-4 align-center">
       <div class="d-flex align-center gap-x-4 w-100">
         <VDivider />
+
         <span class="text-sm text-secondary">Or login with</span>
+
         <VDivider />
       </div>
       <SocialAuth />
     </div>
+
+    <VCard
+      color="background"
+      title="Try Error"
+    >
+      <VCardText>
+        Input email <span class="font-weight-semibold text-black">demo@example.com</span>
+      </VCardText>
+    </VCard>
 
     <div class="text-sm text-center">
       By Create Account, you agree to the

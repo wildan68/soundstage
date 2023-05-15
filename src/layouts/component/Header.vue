@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import ThemeSwitcher from './ThemeSwitcher.vue'
-import { isDark, navMenu, searchBox, searchPlaceholder } from '@core/app'
+import { isDark, isLoggedin, navMenu, searchBox, searchPlaceholder } from '@core/app'
 import { themeConfig } from '@themeConfig'
 import NotFoundVec from '@images/vec/not-found.png'
+import { useAuthStore } from '@/stores/auth'
 
 interface Props {
   transparent: boolean
@@ -11,6 +12,8 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   transparent: true,
 })
+
+const store = useAuthStore()
 
 const onFocus = ref<boolean>(false)
 
@@ -128,7 +131,10 @@ const notificationTab = ref<string>('pending')
             </VCard>
           </VMenu>
 
-          <VMenu :close-on-content-click="false">
+          <VMenu
+            v-if="isLoggedin"
+            :close-on-content-click="false"
+          >
             <template #activator="{ props }">
               <VAvatar
                 color="info"
@@ -147,7 +153,7 @@ const notificationTab = ref<string>('pending')
                   size="48"
                 />
 
-                <span class="font-weight-semibold text-black text-center text-lg">Seteven Joe</span>
+                <span class="font-weight-semibold text-black text-center text-lg">{{ store.user.fullname }}</span>
               </VCardText>
 
               <VDivider />
@@ -171,6 +177,7 @@ const notificationTab = ref<string>('pending')
                 <div
                   v-ripple
                   class="profile-menu"
+                  @click="store.logout()"
                 >
                   Logout
                 </div>
@@ -179,6 +186,7 @@ const notificationTab = ref<string>('pending')
           </VMenu>
 
           <VBtn
+            v-if="!isLoggedin"
             variant="text"
             :color="transparent ? 'white-persistent' : 'black'"
             @click="$router.push('/login')"
@@ -187,6 +195,7 @@ const notificationTab = ref<string>('pending')
           </VBtn>
 
           <VBtn
+            v-if="!isLoggedin"
             variant="outlined"
             @click="$router.push('/register')"
           >

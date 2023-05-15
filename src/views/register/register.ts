@@ -1,10 +1,21 @@
 import type { Component } from 'vue'
+import type { Register } from '@/stores/types'
 
 interface RegisterStep {
   key: string
   title: string
   component: Component
 }
+
+export const registerForm = reactive<Register>({
+  email: '',
+  password: '',
+  firstname: '',
+  lastname: '',
+  phone_number: '',
+})
+
+export const phone_number_temp = ref<string>('')
 
 export const useRegister = () => {
   const activeStep = ref<number>(0)
