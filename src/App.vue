@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
-import { useThemeConfig } from '@core/app'
+import { isDark, useThemeConfig } from '@core/app'
 
 const { global } = useTheme()
+
+const switchTheme = (val: boolean) => val ? global.name.value = 'dark' : global.name.value = 'light'
+
+watch(isDark, switchTheme)
+
+onMounted(() => switchTheme(isDark.value))
 
 useThemeConfig()
 </script>

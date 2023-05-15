@@ -57,11 +57,12 @@ import { appLoad, isDark } from '@/@core/app'
   display: flex;
   flex-direction: column;
   flex: 1;
-  position: relative;
+  position: sticky;
   align-items: center;
   gap: 24px;
   height: calc(100vh - 24px);
   padding: 0 4rem;
+  top: 24px;
 
   &__auth-image {
     position: absolute;

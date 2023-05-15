@@ -5,6 +5,8 @@ import navMenu from './navMenu'
 import footer from './footer'
 import { themeConfig } from '@themeConfig'
 
+export const isLoggedin = ref<boolean>(false)
+
 export const isDark = ref<boolean>(false)
 
 export const appLoad = ref<boolean>(true)
