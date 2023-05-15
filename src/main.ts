@@ -13,6 +13,9 @@ import vuetify from '@/plugins/vuetify'
 // Swiper
 import swiper from '@/plugins/swiper'
 
+// OTPInput
+import otpInput from '@/plugins/otp'
+
 import App from '@/App.vue'
 import router from '@/router'
 
@@ -29,5 +32,7 @@ app.use(router)
 app.use(vuetify)
 
 app.use(swiper)
+
+app.use(otpInput)
 
 app.mount('#app')
