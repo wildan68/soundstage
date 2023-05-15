@@ -72,3 +72,16 @@ mock.onPost('/auth/register').reply((config) => {
 
   return [200, { data }]
 })
+
+mock.onPost('/auth/verify-otp').reply((config) => {
+  const { otp_code } = JSON.parse(config.data)
+
+  const errors: Record<string, string[]> = {
+    otp_code: ['Something wrong'],
+  }
+
+  if (otp_code === '12345')
+    return [200, { data: {} }]
+
+  return [400, { errors }]
+})

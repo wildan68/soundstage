@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { registerForm } from './register'
+import RegisterFooter from './RegisterFooter.vue'
 import { emailValidator, requiredValidator } from '@validators'
 import { useAuthStore } from '@/stores/auth'
+import SocialAuth from '@/views/auth-provider/SocialAuth.vue'
 
 interface Emit {
   (e: 'submit'): void
@@ -88,5 +90,27 @@ const onError = () => {
         </VRow>
       </template>
     </VBtn>
+
+    <div class="d-flex flex-column gap-y-4 align-center">
+      <div class="d-flex align-center gap-x-4 w-100">
+        <VDivider />
+
+        <span class="text-sm text-secondary">Or login with</span>
+
+        <VDivider />
+      </div>
+      <SocialAuth />
+    </div>
+
+    <VCard
+      color="background"
+      title="Try Error"
+    >
+      <VCardText>
+        Input email <span class="font-weight-semibold text-black">demo@example.com</span>
+      </VCardText>
+    </VCard>
+
+    <RegisterFooter />
   </VForm>
 </template>

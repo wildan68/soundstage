@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Router } from 'vue-router'
 import { phone_number_temp, registerForm } from './register'
+import RegisterFooter from './RegisterFooter.vue'
 import { useAuthStore } from '@/stores/auth'
 import { integerValidator, requiredValidator } from '@validators'
 
@@ -128,6 +129,8 @@ const onSubmit = async () => {
         </VRow>
       </template>
     </VBtn>
+
+    <RegisterFooter />
   </VForm>
 </template>
 

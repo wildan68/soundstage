@@ -1,0 +1,31 @@
+.otp-input {
+    width: 52px;
+    height: 52px;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgb(var(--v-theme-secondary));
+    text-align: center;
+    outline: none;
+    font-weight: bold;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &.is-complete {
+        background-color: rgba(var(--v-theme-primary), 0.1);
+        border: 1px solid rgb(var(--v-theme-primary));
+        color: rgb(var(--v-theme-primary));
+    }
+}
+
+input::placeholder {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+}

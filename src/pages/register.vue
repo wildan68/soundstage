@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import SocialAuth from '@/views/auth-provider/SocialAuth.vue'
-import { themeConfig } from '@themeConfig'
 import { useRegister } from '@/views/register/register'
-import { isDark } from '@/@core/app'
 
 const { step, activeStep } = useRegister()
 
@@ -19,7 +16,7 @@ const handlerNext = () => {
       class="gap-x-4"
     >
       <VBtn
-        v-if="activeStep > 0"
+        v-if="activeStep > 0 && step[activeStep].back"
         icon
         variant="plain"
         color="black"
@@ -38,57 +35,6 @@ const handlerNext = () => {
         />
       </KeepAlive>
     </VScaleTransition>
-
-    <div class="d-flex flex-column gap-y-4 align-center">
-      <div class="d-flex align-center gap-x-4 w-100">
-        <VDivider />
-
-        <span class="text-sm text-secondary">Or login with</span>
-
-        <VDivider />
-      </div>
-      <SocialAuth />
-    </div>
-
-    <VCard
-      color="background"
-      title="Try Error"
-    >
-      <VCardText>
-        Input email <span class="font-weight-semibold text-black">demo@example.com</span>
-      </VCardText>
-    </VCard>
-
-    <div class="text-sm text-center">
-      By Create Account, you agree to the
-      <span class="font-weight-semibold text-primary cursor-pointer">Terms & Conditions</span>
-      and <span class="font-weight-semibold text-primary cursor-pointer">Privacy Policy</span>
-      {{ themeConfig.app.name }}.
-    </div>
-
-    <div class="text-sm text-center">
-      Already have an account?
-      <RouterLink
-        to="/login"
-        class="font-weight-semibold text-primary cursor-pointer"
-      >
-        Just log in
-      </RouterLink>
-    </div>
-
-    <VRow
-      no-gutters
-      class="gap-x-2 justify-center w-100 align-center"
-    >
-      <Component
-        :is="themeConfig.app.logo"
-        width="91px"
-        :light="isDark"
-      />
-      <div class="text-xs">
-        {{ themeConfig.app.copyright }}
-      </div>
-    </VRow>
   </VSheet>
 </template>
 

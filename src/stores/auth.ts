@@ -51,6 +51,18 @@ export const useAuthStore = defineStore({
       }
     },
 
+    async verifyOtp(payload: { email: string; otp_code: string }) {
+      try {
+        const { data } = await axios.post<Promise<AxiosResponse>>('/auth/verify-otp', payload)
+
+        return data
+      }
+      catch (err) {
+        if (err instanceof Error)
+          throw new Error(err.message)
+      }
+    },
+
     async register(payload: Register) {
       try {
         const { data } = await axios.post<Promise<AxiosResponse>>('/auth/register', payload)
