@@ -18,6 +18,17 @@ const store = useAuthStore()
 const onFocus = ref<boolean>(false)
 
 const notificationTab = ref<string>('pending')
+
+const avatarText = computed<string>(() => {
+  const name = store.user?.fullname
+
+  if (!name)
+    return ''
+
+  const [firstName, lastName] = name.split(' ')
+
+  return `${firstName[0]}${lastName ? lastName[0] : ''}`
+})
 </script>
 
 <template>
@@ -136,22 +147,24 @@ const notificationTab = ref<string>('pending')
             :close-on-content-click="false"
           >
             <template #activator="{ props }">
-              <VAvatar
-                color="info"
-                size="28"
-                class="cursor-pointer"
+              <div
+                class="avatar"
                 v-bind="props"
-              />
+              >
+                {{ avatarText }}
+              </div>
             </template>
             <VCard
               class="my-4"
               width="200px"
             >
               <VCardText class="d-flex flex-column gap-2 align-center">
-                <VAvatar
-                  color="info"
-                  size="48"
-                />
+                <div
+                  class="avatar"
+                  :style="{ width: '48px', height: '48px', fontSize: '16px' }"
+                >
+                  {{ avatarText }}
+                </div>
 
                 <span class="font-weight-semibold text-black text-center text-lg">{{ store.user.fullname }}</span>
               </VCardText>
@@ -305,5 +318,21 @@ const notificationTab = ref<string>('pending')
   &:hover {
     background: rgb(var(--v-theme-background));
   }
+}
+
+.avatar {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 99px;
+  background: rgb(var(--v-theme-info));
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
 }
 </style>
