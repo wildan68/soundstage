@@ -20,7 +20,10 @@ const onFocus = ref<boolean>(false)
 const notificationTab = ref<string>('pending')
 
 const avatarText = computed<string>(() => {
-  const name = store.user?.fullname
+  if (!store.user.fullname)
+    return ''
+
+  const name: string = store.user.fullname
 
   if (!name)
     return ''

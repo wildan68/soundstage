@@ -1,0 +1,10 @@
+.bottom-sheet {
+    background: rgb(var(--v-theme-bottom-sheet-surface)) !important;
+
+    .bottom-sheet-body {
+        color: rgb(var(--v-theme-on-surface)) !important;
+        padding: 24px 24px 0 24px !important;
+        background: rgb(var(--v-theme-bottom-sheet-surface)) !important;
+    }
+}
+

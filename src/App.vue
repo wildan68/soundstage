@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTheme } from 'vuetify'
 import { hexToRgb } from '@layouts/utils'
-import { isDark, useThemeConfig } from '@core/app'
+import { isDark, useSkinConfig } from '@core/app'
 
 const { global } = useTheme()
 
@@ -11,7 +11,7 @@ watch(isDark, switchTheme)
 
 onMounted(() => switchTheme(isDark.value))
 
-useThemeConfig()
+useSkinConfig()
 </script>
 
 <template>
