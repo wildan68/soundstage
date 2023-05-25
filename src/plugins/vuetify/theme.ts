@@ -39,6 +39,7 @@ const theme: VuetifyOptions['theme'] = {
         'black-persistent': '#353535',
         'perfect-scrollbar-thumb': '#DBDADE',
         'switch': '#E0E0E0',
+        'bottom-sheet-surface': '#fff',
       },
 
       variables: {
@@ -86,6 +87,7 @@ const theme: VuetifyOptions['theme'] = {
         'black-persistent': '#353535',
         'perfect-scrollbar-thumb': '#4A5072',
         'switch': '#FF793F',
+        'bottom-sheet-surface': '#2F3349',
       },
       variables: {
         'border-color': '#CFD3EC',

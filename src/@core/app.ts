@@ -51,7 +51,7 @@ export const useRandom = (min: number, max: number) => {
 
 export const useNumberDot = (number: number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
-export const useThemeConfig = () => {
+export const useSkinConfig = () => {
   const theme = localStorage.getItem('theme')
 
   if (!theme) {

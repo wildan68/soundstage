@@ -16,6 +16,9 @@ import swiper from '@/plugins/swiper'
 // OTPInput
 import otpInput from '@/plugins/otp'
 
+// Bottom Sheet
+import bottomSheet from '@/plugins/bottom-sheet'
+
 import App from '@/App.vue'
 import router from '@/router'
 
@@ -34,5 +37,7 @@ app.use(vuetify)
 app.use(swiper)
 
 app.use(otpInput)
+
+bottomSheet.forEach(plugin => app.use(plugin))
 
 app.mount('#app')

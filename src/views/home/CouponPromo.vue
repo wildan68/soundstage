@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { VSPagination } from '@/@core/app'
+import { themeConfig } from '@themeConfig'
 
 const couponList = [
   {
@@ -25,12 +26,17 @@ const couponList = [
   <VRow
     no-gutters
     class="gap-6 align-center"
+    :class="[{ 'flex-column': themeConfig.isMobile }]"
   >
     <div
-      class="d-flex flex-column gap-4"
-      :style="{ width: '35%' }"
+      class="d-flex gap-4"
+      :style="{ width: !themeConfig.isMobile ? '35%' : '100%' }"
+      :class="[
+        { 'flex-column': !themeConfig.isMobile },
+        { 'flex-row': themeConfig.isMobile },
+      ]"
     >
-      <div class="bg-primary w-fit-content pa-3 rounded-full">
+      <div class="bg-primary w-fit-content pa-3 rounded-full h-fit-content">
         <VIcon
           icon="tabler-discount-2"
           size="74px"
@@ -38,22 +44,35 @@ const couponList = [
         />
       </div>
 
-      <h1 class="text-black">
-        Interesting Promo Coupons for you, let's see...
-      </h1>
+      <div class="d-flex flex-column gap-4">
+        <h1
+          class="text-black"
+          :class="[{ 'text-lg font-weight-bold': themeConfig.isMobile }]"
+        >
+          Interesting Promo Coupons for you, let's see...
+        </h1>
 
-      <VBtn
-        variant="tonal"
-        width="fit-content"
-        size="large"
-      >
-        See all promos
-      </VBtn>
+        <VBtn
+          variant="tonal"
+          width="fit-content"
+          size="large"
+        >
+          See all promos
+        </VBtn>
+      </div>
     </div>
-    <div class="flex-1 bg-surface coupon-list h-fit-content">
-      <div class="relative w-100">
+
+    <div
+      class="flex-1 coupon-list h-fit-content w-100"
+      :class="[{ 'bg-surface ': !themeConfig.isMobile }]"
+    >
+      <div
+        class="relative"
+        :class="[{ 'w-100': !themeConfig.isMobile }]"
+        :style="{ marginInline: themeConfig.isMobile ? '-24px' : '0' }"
+      >
         <VSwiper
-          :space-between="30"
+          :space-between="themeConfig.isMobile ? 10 : 30"
           slides-per-view="auto"
           :modules="[VSPagination]"
           :pagination="{ clickable: true, el: '.coupon-list__pagination' }"
@@ -72,7 +91,10 @@ const couponList = [
           </VSwiperSlide>
         </VSwiper>
 
-        <div class="coupon-list__pagination" />
+        <div
+          v-if="!themeConfig.isMobile"
+          class="coupon-list__pagination"
+        />
       </div>
     </div>
   </VRow>
@@ -88,6 +110,10 @@ const couponList = [
     border-radius: 14px;
     overflow: hidden;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+      width: 60%;
+    }
 
     &:nth-child(1) {
       margin-left: 24px;

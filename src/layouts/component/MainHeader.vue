@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Header from './Header.vue'
+import { themeConfig } from '@themeConfig'
 import { searchBox, searchPlaceholder } from '@/@core/app'
 
 interface CategoryList {
@@ -39,8 +40,9 @@ const categoryList = reactive<CategoryList[]>([
     <VContainer>
       <div class="main-search">
         <div
-          class="text-2xl text-center"
+          class="text-center"
           :style="{ zIndex: 100 }"
+          :class="[{ 'text-2xl': !themeConfig.isMobile }]"
         >
           Hey you, <span class="font-weight-bold">what event do you want to watch?</span>
         </div>
@@ -116,6 +118,10 @@ const categoryList = reactive<CategoryList[]>([
   align-items: center;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 728px) {
+    padding: 48px 0;
+  }
 }
 
 // 👉 Override TextField
@@ -138,6 +144,10 @@ const categoryList = reactive<CategoryList[]>([
 .input-search {
   width: 644px;
   position: relative;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 
   &__overlay {
     position: fixed;

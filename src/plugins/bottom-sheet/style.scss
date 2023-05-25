@@ -1,0 +1,27 @@
+.bottom-sheet-backdrop {
+    z-index: 9999 !important;
+
+    .bottom-sheet {
+        background: rgb(var(--v-theme-bottom-sheet-surface)) !important;
+        max-height: 100vh !important;
+        min-height: fit-content !important;
+        padding-bottom: 16px !important;
+
+        .bottom-sheet-header {
+            position: relative !important;
+        
+            .bottom-sheet-header-bar {
+                background: rgb(var(--v-theme-bottom-sheet-surface)) !important;
+                margin-top: -24px !important;
+            }
+        }
+
+        .bottom-sheet-body {
+            color: rgb(var(--v-theme-on-surface)) !important;
+            padding: 24px 24px 0 24px !important;
+            background: rgb(var(--v-theme-bottom-sheet-surface)) !important;
+            border-radius: 12px 12px 0 0 !important;
+        }
+    }
+}
+

@@ -1,3 +1,5 @@
+import type { ItemsCard } from "@/@core/components/types"
+
 export interface User {
     id: number
     fullname: string
@@ -8,3 +10,5 @@ export interface User {
     phone_number: string
     token: string
 }
+
+export interface ItemsList extends ItemsCard {}

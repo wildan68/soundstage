@@ -29,8 +29,11 @@ const router = createRouter({
   },
 })
 
+// router.afterEach(() => setTimeout(() => appLoad.value = false, themeConfig.app.appLoadInterval))
+
 // Docs: https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards
 router.beforeEach((to) => {
+  // appLoad.value = true
   setTimeout(() => appLoad.value = false, themeConfig.app.appLoadInterval)
 
   const store = useAuthStore()

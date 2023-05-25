@@ -8,15 +8,41 @@ import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
 <template>
   <div class="footer-wrapper">
     <VContainer class="d-flex flex-column text-sm">
+      <VCol
+        v-if="themeConfig.isMobile"
+        class="d-flex flex-column gap-y-1 w-100 justify-center text-center"
+      >
+        <div class="my-6 font-weight-semibold text-black">
+          Download {{ themeConfig.app.name }} app
+        </div>
+
+        <div
+          no-gutters
+          class="d-flex justify-space-between gap-2"
+        >
+          <VImg
+            :src="GetItOnPlaystore"
+            width="50%"
+            class="flex-1"
+          />
+          <VImg
+            :src="DownloadOnTheAppstore"
+            width="50%"
+            class="flex-1"
+          />
+        </div>
+      </VCol>
+
       <VRow no-gutters>
         <VCol
           v-for="menu in footer"
           :key="menu.key"
-          class="d-flex flex-column gap-y-5"
+          class="d-flex flex-column gap-y-5 flex-wrap"
         >
           <div class="my-6 font-weight-semibold text-black">
             {{ menu.label }}
           </div>
+
           <div
             v-for="subMenu in menu.children"
             :key="subMenu.key"
@@ -25,7 +51,11 @@ import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
             {{ subMenu.label }}
           </div>
         </VCol>
-        <VCol class="d-flex flex-column gap-y-1">
+
+        <VCol
+          v-if="!themeConfig.isMobile"
+          class="d-flex flex-column gap-y-1"
+        >
           <div class="my-6 font-weight-semibold text-black">
             Download {{ themeConfig.app.name }} app
           </div>
@@ -39,10 +69,12 @@ import DownloadOnTheAppstore from '@images/download-on-the-appstore.png'
           />
         </VCol>
       </VRow>
+
       <VDivider
         class="my-6"
         thickness="4px"
       />
+
       <VRow
         no-gutters
         class="gap-x-2 justify-center w-100 align-center mb-6"
