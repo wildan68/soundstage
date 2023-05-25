@@ -2,6 +2,7 @@
 import type { ItemsCard, ItemsFilterBoxCard } from './types'
 import { VSNavigation, VSPagination, useRandom } from '@core/app'
 import BoyJumping from '@images/vec/boy-jumping.png'
+import { themeConfig } from '@themeConfig'
 
 interface Props {
   title: string
@@ -29,7 +30,7 @@ const [initialFilter] = props.filter || []
 
 const activeFilterKey = ref<string>(initialFilter?.id || '')
 
-const numberSlide = props.variant === 'event' ? 4 : 5
+const numberSlide = props.variant === 'event' ? themeConfig.isTablet ? 3 : 4 : themeConfig.isTablet ? 4 : 5
 
 const onFilterChange = (id: string) => {
   activeFilterKey.value = id
@@ -49,6 +50,7 @@ const onFilterChange = (id: string) => {
       >
         {{ title }}
       </span>
+
       <span
         class="text-sm"
         :class="[{ 'text-secondary': variant !== 'event' }]"
@@ -56,26 +58,31 @@ const onFilterChange = (id: string) => {
         {{ subtitle }}
       </span>
     </div>
-    <VRow
+    <VSwiper
       v-if="filter"
-      no-gutters
-      class="mb-6 gap-3"
+      slides-per-view="auto"
+      :space-between="10"
+      class="mb-6 box-wrapper__filter"
     >
-      <VBtn
+      <VSwiperSlide
         v-for="filters in filter"
         :key="filters.id"
-        variant="outlined"
-        :color="filters.id === activeFilterKey ? 'primary ' : 'black'"
-        :class="[
-          { 'btn-inactive': filters.id !== activeFilterKey },
-          { 'btn-active': filters.id === activeFilterKey },
-        ]"
-        :append-icon="filters.icon ? filters.icon : ''"
-        @click="onFilterChange(filters.id)"
+        class="box-wrapper__filter__slide"
       >
-        {{ filters.label }}
-      </VBtn>
-    </VRow>
+        <VBtn
+          variant="outlined"
+          :color="filters.id === activeFilterKey ? 'primary ' : 'black'"
+          :class="[
+            { 'btn-inactive': filters.id !== activeFilterKey },
+            { 'btn-active': filters.id === activeFilterKey },
+          ]"
+          :append-icon="filters.icon ? filters.icon : ''"
+          @click="onFilterChange(filters.id)"
+        >
+          {{ filters.label }}
+        </VBtn>
+      </VSwiperSlide>
+    </VSwiper>
 
     <div
       class="box-wrapper__main-slide"
@@ -92,23 +99,32 @@ const onFilterChange = (id: string) => {
       >
         <VImg
           :src="BoyJumping"
-          width="290px"
+          :width="themeConfig.isMobile ? '206px' : '290px'"
         />
       </div>
+
       <div
         class="relative w-100"
       >
-        <SwiperNavigation :config="navigation" />
+        <SwiperNavigation
+          v-if="!themeConfig.isMobile"
+          :config="navigation"
+        />
 
         <VSwiper
-          :slides-per-view="numberSlide"
+          :slides-per-view="themeConfig.isMobile ? 'auto' : numberSlide"
           :space-between="10"
           :modules="[VSPagination, VSNavigation]"
           :navigation="navigation"
+          class="box-wrapper__slide"
         >
           <VSwiperSlide
             v-for="item in items"
             :key="item.id"
+            :class="[
+              { 'box-wrapper__slide__items': variant !== 'event' },
+              { 'box-wrapper__slide__items__event': variant === 'event' },
+            ]"
           >
             <RouterLink :to="`/${item.slug}`">
               <EventCard :data="item" />
@@ -124,10 +140,74 @@ const onFilterChange = (id: string) => {
 .box-wrapper {
   border-radius: 14px;
 
+  @media (max-width: 728px) {
+    border-radius: 14px 0 0 14px;
+    margin-right: -24px;
+  }
+
   &__event {
     background: linear-gradient(90deg, rgba(var(--v-theme-primary), 0.8) 0%, rgba(var(--v-theme-primary), 10.3) 100%);
     padding: 24px;
     color: rgb(var(--v-theme-white));
+
+    @media (max-width: 728px) {
+      padding: 24px 0 24px 24px;
+    }
+  }
+
+  &__filter {
+    margin-left: -24px;
+
+    &__slide {
+      width: fit-content;
+
+      &:nth-child(1) {
+        margin-left: 24px;
+      }
+
+      &:nth-last-child(1) {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  &__slide {
+    @media (max-width: 728px) {
+      margin-left: -24px;
+    }
+
+    &__items {
+      width: 100%;
+
+      @media (max-width: 728px) {
+        width: 60%;
+
+        &:nth-child(1) {
+        margin-left: 24px;
+        }
+
+        &:nth-last-child(1) {
+          margin-right: 24px;
+        }
+      }
+    };
+
+    &__items__event {
+      width: 100%;
+
+      @media (max-width: 728px) {
+        width: 80%;
+
+        &:nth-child(1) {
+        margin-left: 24px;
+        }
+
+        &:nth-last-child(1) {
+          margin-right: 24px;
+        }
+      }
+    };
+
   }
 
   &__main-slide {
@@ -137,6 +217,10 @@ const onFilterChange = (id: string) => {
 
     &__is-event {
       padding-left: 150px;
+
+      @media (max-width: 728px) {
+        padding-left: 100px;
+      }
     }
   }
 
@@ -146,6 +230,10 @@ const onFilterChange = (id: string) => {
     top: 0;
     z-index: 10;
     animation: EventVectorAnimation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+
+    @media (max-width: 728px) {
+      left: -20%;
+    }
   }
 
   @keyframes EventVectorAnimation {

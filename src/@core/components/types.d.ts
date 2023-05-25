@@ -14,7 +14,7 @@ export interface ItemsCard {
     price: number
 }
 
-export interface TabMenuItems {
+export type TabMenuItems = {
     key: string
     label: string
 }
