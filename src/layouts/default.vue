@@ -4,7 +4,9 @@ import AppLoad from './component/AppLoad.vue'
 import Header from './component/Header.vue'
 import MainHeader from './component/MainHeader.vue'
 import Footer from './component/Footer.vue'
+import MobileNavbar from './component/MobileNavbar.vue'
 import { appLoad } from '@/@core/app'
+import { themeConfig } from '@themeConfig'
 
 const { y } = useWindowScroll()
 
@@ -41,11 +43,16 @@ const isHome = computed(() => route.path === '/')
         </VFadeTransition>
       </Teleport>
       <MainHeader v-if="isHome" />
+
       <!-- 👉 Pages -->
       <RouterView v-slot="{ Component }">
         <Component :is="Component" />
       </RouterView>
+
       <Footer />
+
+      <!-- 👉 Mobile Navbar -->
+      <MobileNavbar v-if="themeConfig.isMobile" />
     </div>
   </VScaleTransition>
 </template>
