@@ -340,6 +340,11 @@ const avatarText = computed<string>(() => {
 </template>
 
 <style scoped lang="scss">
+:deep(.v-container) {
+  @media (max-width: 728px) {
+    padding: 8px 24px !important;
+  }
+}
 .header-wrapper {
   background: rgb(var(--v-theme-surface));
   box-shadow: 0 0 10px 0 rgb(var(--v-theme-black-persistent), 0.1);

@@ -2,6 +2,7 @@
 import { VSkeletonLoader } from 'vuetify/labs/components'
 import type { ItemsCard } from './types'
 import { useNumberDot } from '@core/app'
+import { themeConfig } from '@themeConfig'
 
 const props = defineProps<{ data: ItemsCard }>()
 
@@ -22,11 +23,11 @@ const titleTruncate = (str: string) => {
 <template>
   <VCard
     class="cursor-pointer"
-    height="380px"
+    height="100%"
   >
     <VImg
       :src="image"
-      height="200px"
+      :height="themeConfig.isMobile ? '142px' : '200px'"
       cover
       @load="loaded = true"
     >
@@ -70,5 +71,9 @@ const titleTruncate = (str: string) => {
 
 :deep(.v-skeleton-loader__image) {
   height: 200px !important;
+
+  @media (max-width: 728px) {
+    height: 142px !important;
+  }
 }
 </style>

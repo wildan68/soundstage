@@ -177,13 +177,14 @@ const onFilterChange = (id: string) => {
     }
 
     &__items {
+      height: auto !important;
       width: 100%;
 
       @media (max-width: 728px) {
-        width: 60%;
+        width: 50%;
 
         &:nth-child(1) {
-        margin-left: 24px;
+          margin-left: 24px;
         }
 
         &:nth-last-child(1) {
@@ -194,9 +195,10 @@ const onFilterChange = (id: string) => {
 
     &__items__event {
       width: 100%;
+      height: auto !important;
 
       @media (max-width: 728px) {
-        width: 80%;
+        width: 70%;
 
         &:nth-child(1) {
         margin-left: 24px;
