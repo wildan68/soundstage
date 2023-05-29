@@ -104,9 +104,9 @@ import { appLoad, isDark } from '@/@core/app'
 }
 
 // 👉 Override TextField
-:deep(.v-field__input), :deep(.v-field__append-inner), :deep(.v-text-field__prefix) {
-  padding-block: 16px;
-}
+// :deep(.v-field__input), :deep(.v-field__append-inner), :deep(.v-text-field__prefix) {
+//   padding-block: 16px;
+// }
 
 :deep(.v-field__outline__start) {
   border-radius: 8px 0 0 8px !important;
@@ -116,9 +116,9 @@ import { appLoad, isDark } from '@/@core/app'
   border-radius: 0 8px 8px 0 !important;
 }
 
-:deep(.v-label.v-field-label) {
-  top: 28px !important;
-}
+// :deep(.v-label.v-field-label) {
+//   top: 28px !important;
+// }
 
 // 👉 Override Divider
 :deep(.v-divider) {
