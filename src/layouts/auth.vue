@@ -117,7 +117,7 @@ import { appLoad, isDark } from '@/@core/app'
 }
 
 :deep(.v-label.v-field-label) {
-  top: 14px !important;
+  top: 28px !important;
 }
 
 // 👉 Override Divider
