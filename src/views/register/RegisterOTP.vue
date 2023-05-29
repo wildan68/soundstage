@@ -2,6 +2,7 @@
 import { registerForm } from './register'
 import RegisterFooter from './RegisterFooter.vue'
 import { useAuthStore } from '@/stores/auth'
+import { themeConfig } from '@themeConfig'
 
 interface Emit {
   (e: 'submit'): void
@@ -90,7 +91,10 @@ onMounted(() => startTimer())
     class="d-flex flex-column gap-4 align-center"
     @submit.prevent="onVerifyOtp"
   >
-    <div class="font-weight-semibold text-black text-center">
+    <div
+      class="font-weight-semibold text-black text-center"
+      :class="[{ 'text-sm': themeConfig.isMobile }]"
+    >
       Check your email to get the OTP code
     </div>
 

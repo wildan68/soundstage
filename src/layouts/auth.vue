@@ -13,28 +13,44 @@ import { appLoad, isDark } from '@/@core/app'
     <VRow
       v-else
       no-gutters
-      class="mt-6 mx-14"
+      class="mt-6"
+      :class="[
+        { 'mx-14': !themeConfig.isMobile && !themeConfig.isTablet },
+        { 'mx-6': themeConfig.isMobile || themeConfig.isTablet },
+      ]"
     >
       <div class="bg-container">
         <Component
           :is="themeConfig.app.logo"
           :light="isDark"
         />
-        <div class="text-2xl text-center font-weight-bold">
-          Enjoy the convenience of buying the music<br>festival tickets you're looking for!
+
+        <div
+          class="text-center font-weight-bold"
+          :class="[{ 'text-2xl': !themeConfig.isMobile }]"
+        >
+          Enjoy the convenience of buying the music festival tickets you're looking for!
         </div>
-        <div class="text-secondary text-xl">
+
+        <div
+          class="text-secondary"
+          :class="[
+            { 'text-xl': !themeConfig.isMobile },
+            { 'text-sm': themeConfig.isMobile },
+          ]"
+        >
           It's easy to register
         </div>
+
         <VImg
           :src="FrameBGAuth"
-          width="70%"
+          :width="themeConfig.isMobile || themeConfig.isTablet ? '100%' : '70%'"
           height="fit-content"
           class="bg-container__auth-image"
         />
       </div>
       <!-- 👉 Pages -->
-      <VCard width="574px">
+      <VCard :width="themeConfig.isMobile || themeConfig.isTablet ? '100%' : '574px'">
         <VCardText>
           <RouterView v-slot="{ Component }">
             <VExpandTransition>
@@ -49,8 +65,8 @@ import { appLoad, isDark } from '@/@core/app'
 
 <style scoped lang="scss">
 .v-card {
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
 }
 
 .bg-container {
@@ -64,9 +80,22 @@ import { appLoad, isDark } from '@/@core/app'
   padding: 0 4rem;
   top: 24px;
 
+  @media (max-width: 1024px) {
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    margin-bottom: 24px;
+  }
+
   &__auth-image {
     position: absolute;
     bottom: 0;
+
+    @media (max-width: 1024px) {
+      position: fixed;
+    }
   }
 }
 

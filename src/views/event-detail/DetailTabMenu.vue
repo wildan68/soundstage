@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { themeConfig } from '@themeConfig'
+
 interface Props {
   activeKey: string
 }
@@ -37,6 +39,40 @@ const menu = [{
 <template>
   <div class="menu-wrapper">
     <VContainer>
+      <VRow
+        v-if="themeConfig.isMobile"
+        no-gutters
+        class="menu-wrapper__navigation justify-space-between w-100"
+      >
+        <VRow
+          no-gutters
+          class="align-center gap-2"
+        >
+          <VBtn
+            icon
+            class="menu-wrapper__navigation__btn"
+            variant="text"
+            color="black"
+            @click="$router.back()"
+          >
+            <VIcon icon="tabler-chevron-left" />
+          </VBtn>
+
+          <div class="text-black font-weight-bold">
+            JAKARTA MUSIC FESTIVAL
+          </div>
+        </VRow>
+
+        <VBtn
+          icon
+          variant="text"
+          class="menu-wrapper__navigation__btn"
+          color="black"
+        >
+          <VIcon icon="tabler-share" />
+        </VBtn>
+      </VRow>
+
       <VTabs
         v-model="activeMenu"
         height="60px"
@@ -60,6 +96,21 @@ const menu = [{
   position: sticky;
   top: 200px;
   z-index: 20;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__navigation {
+    padding: 24px;
+
+    &__btn {
+      border-radius: 50% !important;
+    }
+  }
 }
 
 :deep(.v-container) {

@@ -70,9 +70,29 @@ const dateList: DateFilter[] = [
 .date-wrapper {
   padding-bottom: 14px;
   border-bottom: 1px dashed rgba(var(--v-theme-secondary), 0.5);
+
+  @media (max-width: 768px) {
+    margin-inline: -24px;
+  }
 }
 .date-items {
   width: 8%;
+
+  @media (max-width: 1024px) {
+    width: 13%;
+  }
+
+  @media (max-width: 768px) {
+    width: 27%;
+
+    &:nth-child(1) {
+        margin-left: 24px;
+    }
+
+    &:nth-last-child(1) {
+      margin-right: 24px;
+    }
+  }
 
   &__btn {
     height: 74px !important;

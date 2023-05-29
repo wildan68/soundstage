@@ -341,7 +341,7 @@ const avatarText = computed<string>(() => {
 
 <style scoped lang="scss">
 :deep(.v-container) {
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     padding: 8px 24px !important;
   }
 }
@@ -377,7 +377,7 @@ const avatarText = computed<string>(() => {
   width: 40%;
   position: relative;
 
-  @media (max-width: 728px) {
+  @media (max-width: 1024px) {
     width: 100%;
   }
 }

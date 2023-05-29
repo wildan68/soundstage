@@ -67,7 +67,10 @@ const onError = () => {
 </script>
 
 <template>
-  <VSheet class="d-flex flex-column gap-8 px-6">
+  <VSheet
+    class="d-flex flex-column gap-8"
+    :class="[{ 'px-6': !themeConfig.isMobile }]"
+  >
     <h1>Login</h1>
 
     <VScaleTransition>

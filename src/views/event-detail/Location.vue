@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DemoMapBase from '@images/demo-map-base.png'
+import { themeConfig } from '@themeConfig'
 
 interface Emit {
   (e: 'change', val: string): void
@@ -24,7 +25,11 @@ useIntersectionObserver(
   >
     <VExpansionPanel title="Location">
       <VExpansionPanelText>
-        <VImg :src="DemoMapBase">
+        <VImg
+          :src="DemoMapBase"
+          height="321px"
+          cover
+        >
           <div class="map-overlay">
             <div class="map-overlay__content">
               <VRow
@@ -38,9 +43,14 @@ useIntersectionObserver(
                   <span class="text-secondary text-sm">Stadium Street, Central Jakarta, Jakarta, Indonesia</span>
                 </div>
               </VRow>
+
               <VRow
                 no-gutters
-                class="justify-end flex-1 gap-6"
+                class="flex-1 gap-6"
+                :class="[
+                  { 'justify-end': !themeConfig.isMobile },
+                  { 'justify-center w-100': themeConfig.isMobile },
+                ]"
               >
                 <div class="d-flex flex-column gap-1 align-center">
                   <VBtn
@@ -93,7 +103,13 @@ useIntersectionObserver(
     display: flex;
     flex: 1;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
   }
 }
 

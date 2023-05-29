@@ -8,11 +8,15 @@ import MobileNavbar from './component/MobileNavbar.vue'
 import { appLoad } from '@/@core/app'
 import { themeConfig } from '@themeConfig'
 
+const route: RouteLocationNormalized = useRoute()
+
 const { y } = useWindowScroll()
 
 const headerShowing = ref<boolean>(false)
 
-const route: RouteLocationNormalized = useRoute()
+const hideHeader = computed(() => route.meta.hideHeader ? !themeConfig.isMobile && route.meta.hideHeader : true)
+
+const hideNavbar = computed(() => themeConfig.isMobile ? route.meta.hideNavbar ? !themeConfig.isMobile && route.meta.hideNavbar : true : false)
 
 watch(y, val => val > 100 ? headerShowing.value = true : headerShowing.value = false)
 
@@ -26,6 +30,7 @@ const isHome = computed(() => route.path === '/')
     <!-- 👉 Content -->
     <div v-else>
       <Teleport
+        v-if="hideHeader"
         to=".v-application__wrap"
         :disabled="!isHome"
       >
@@ -52,7 +57,7 @@ const isHome = computed(() => route.path === '/')
       <Footer />
 
       <!-- 👉 Mobile Navbar -->
-      <MobileNavbar v-if="themeConfig.isMobile" />
+      <MobileNavbar v-if="hideNavbar" />
     </div>
   </VScaleTransition>
 </template>

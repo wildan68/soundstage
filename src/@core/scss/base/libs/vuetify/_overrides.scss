@@ -248,6 +248,17 @@ h6,
   color: rgb(var(--v-theme-black)) !important;
 }
 
+// 👉 VBreadcrumbs
+.v-breadcrumbs {
+  flex-wrap: wrap !important;
+  row-gap: 8px !important;
+
+  .v-breadcrumbs-item--disabled {
+    opacity: 1 !important;
+    font-weight: bold;
+  }
+}
+
 // 👉 Swiper Pagination
 .swiper-pagination-bullet {
   background: rgba(var(--v-theme-primary), 1) !important;
