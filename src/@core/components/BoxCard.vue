@@ -140,7 +140,7 @@ const onFilterChange = (id: string) => {
 .box-wrapper {
   border-radius: 14px;
 
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     border-radius: 14px 0 0 14px;
     margin-right: -24px;
   }
@@ -150,7 +150,7 @@ const onFilterChange = (id: string) => {
     padding: 24px;
     color: rgb(var(--v-theme-white));
 
-    @media (max-width: 728px) {
+    @media (max-width: 768px) {
       padding: 24px 0 24px 24px;
     }
   }
@@ -172,7 +172,7 @@ const onFilterChange = (id: string) => {
   }
 
   &__slide {
-    @media (max-width: 728px) {
+    @media (max-width: 768px) {
       margin-left: -24px;
     }
 
@@ -180,7 +180,7 @@ const onFilterChange = (id: string) => {
       height: auto !important;
       width: 100%;
 
-      @media (max-width: 728px) {
+      @media (max-width: 768px) {
         width: 50%;
 
         &:nth-child(1) {
@@ -197,7 +197,7 @@ const onFilterChange = (id: string) => {
       width: 100%;
       height: auto !important;
 
-      @media (max-width: 728px) {
+      @media (max-width: 768px) {
         width: 70%;
 
         &:nth-child(1) {
@@ -220,7 +220,7 @@ const onFilterChange = (id: string) => {
     &__is-event {
       padding-left: 150px;
 
-      @media (max-width: 728px) {
+      @media (max-width: 768px) {
         padding-left: 100px;
       }
     }
@@ -233,7 +233,7 @@ const onFilterChange = (id: string) => {
     z-index: 10;
     animation: EventVectorAnimation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 
-    @media (max-width: 728px) {
+    @media (max-width: 768px) {
       left: -20%;
     }
   }

@@ -72,7 +72,7 @@ const titleTruncate = (str: string) => {
 :deep(.v-skeleton-loader__image) {
   height: 200px !important;
 
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     height: 142px !important;
   }
 }

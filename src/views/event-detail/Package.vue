@@ -3,6 +3,7 @@ import DateFilter from './package/DateFilter.vue'
 import PackageList from './package/PackageList.vue'
 import VenueMap from './package/VenueMap.vue'
 import EventInformation from './package/EventInformation.vue'
+import { themeConfig } from '@themeConfig'
 
 interface Emit {
   (e: 'change', val: string): void
@@ -30,11 +31,13 @@ useIntersectionObserver(
       <VRow
         no-gutters
         class="gap-6"
+        :class="[{ 'flex-column': themeConfig.isTablet }]"
       >
         <PackageList class="flex-1" />
+
         <div class="event-information-wrapper">
-          <VenueMap />
-          <EventInformation />
+          <VenueMap class="flex-1" />
+          <EventInformation class="flex-1" />
         </div>
       </VRow>
     </div>
@@ -49,6 +52,15 @@ useIntersectionObserver(
   width: 450px;
   position: sticky;
   top: 200px;
+
+  @media (max-width: 1024px) {
+    flex-direction: row;
+    width: auto;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 </style>
 

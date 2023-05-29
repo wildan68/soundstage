@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { themeConfig } from '@themeConfig'
+
 interface Emit {
   (e: 'change', val: string): void
 }
@@ -11,9 +13,33 @@ useIntersectionObserver(
   summary,
   ([{ isIntersecting }]) => isIntersecting && emit('change', 'summary'),
 )
+
+const breadcrumbs = [
+  {
+    title: 'Home',
+    disabled: false,
+    href: '/',
+  },
+  {
+    title: 'Indonesia',
+    disabled: false,
+    href: '/reg/indonesia',
+  },
+  {
+    title: 'JAKARTA MUSIC FESTIVAL',
+    disabled: true,
+    href: '/the-best-of-jazz',
+  },
+]
 </script>
 
 <template>
+  <VBreadcrumbs :items="breadcrumbs">
+    <template #divider>
+      <VIcon icon="tabler-chevron-right" />
+    </template>
+  </VBreadcrumbs>
+
   <VCard
     ref="summary"
   >
@@ -63,7 +89,10 @@ useIntersectionObserver(
           </div>
         </VCol>
 
-        <VCol class="d-flex flex-column gap-2 align-end">
+        <VCol
+          v-if="!themeConfig.isMobile"
+          class="d-flex flex-column gap-2 align-end"
+        >
           <span class="text-secondary text-sm font-weight-bold">Started</span>
           <span class="text-primary text-2xl font-weight-bold">$40</span>
           <VBtn

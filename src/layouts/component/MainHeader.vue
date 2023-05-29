@@ -119,7 +119,7 @@ const categoryList = reactive<CategoryList[]>([
   flex-direction: column;
   gap: 24px;
 
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     padding: 48px 0;
   }
 }

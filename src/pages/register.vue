@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRegister } from '@/views/register/register'
+import { themeConfig } from '@themeConfig'
 
 const { step, activeStep } = useRegister()
 
@@ -10,10 +11,13 @@ const handlerNext = () => {
 </script>
 
 <template>
-  <VSheet class="d-flex flex-column gap-8 px-6">
+  <VSheet
+    class="d-flex flex-column gap-8"
+    :class="[{ 'px-6': !themeConfig.isMobile }]"
+  >
     <VRow
       no-gutters
-      class="gap-x-4"
+      class="gap-x-4 align-center"
     >
       <VBtn
         v-if="activeStep > 0 && step[activeStep].back"
@@ -24,7 +28,9 @@ const handlerNext = () => {
       >
         <VIcon icon="tabler-chevron-left" />
       </VBtn>
-      <h1>{{ step[activeStep].title }}</h1>
+      <h1 :class="[{ 'text-2xl': themeConfig.isMobile }]">
+        {{ step[activeStep].title }}
+      </h1>
     </VRow>
 
     <VScaleTransition>
