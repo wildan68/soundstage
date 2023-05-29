@@ -6,6 +6,9 @@ import Package from '../../views/event-detail/Package.vue'
 import Location from '../../views/event-detail/Location.vue'
 import Other from '../../views/event-detail/Other.vue'
 import Image from '@/views/event-detail/Image.vue'
+import FacebookIcon from '@core/icons/Facebook.vue'
+import TwitterIcon from '@core/icons/Twitter.vue'
+import WhatsappIcon from '@core/icons/Whatsapp.vue'
 import { themeConfig } from '@themeConfig'
 
 const { y } = useWindowScroll()
@@ -14,18 +17,20 @@ const intersectionKey = ref<string>('summary')
 
 const parent = ref<HTMLElement>()
 
+const shareSheet = ref<boolean>(false)
+
 const detailTabMenu = computed(() => {
   if (!themeConfig.isMobile)
     return true
 
-  return y.value > 250
+  return y.value > 200
 })
 
 const bottomAction = computed(() => {
   if (!themeConfig.isMobile)
     return false
 
-  return y.value < 250
+  return y.value < 200
 })
 
 const changeTab = (val: string) => intersectionKey.value = val
@@ -56,6 +61,7 @@ const changeTabMenu = (val: string) => {
       icon
       color="surface"
       class="mobile-navigation__btn"
+      @click="shareSheet = !shareSheet"
     >
       <VIcon icon="tabler-share" />
     </VBtn>
@@ -73,11 +79,12 @@ const changeTabMenu = (val: string) => {
 
   <VContainer
     ref="parent"
-    class="d-flex flex-column gap-6 pt-4"
+    class="detail-container"
   >
     <Summary
       id="summary"
       @change="changeTab"
+      @change:menu="changeTabMenu"
     >
       <Description
         id="description"
@@ -119,15 +126,70 @@ const changeTabMenu = (val: string) => {
           <span class="text-primary text-2xl font-weight-bold">$40</span>
         </div>
 
-        <VBtn>
+        <VBtn @click="changeTabMenu('packages')">
           Select Ticket
         </VBtn>
       </div>
     </div>
   </VFadeTransition>
+
+  <VBottomSheet v-model:visible="shareSheet">
+    <div class="font-weight-bold text-black text-xl mb-6">
+      Share to
+    </div>
+
+    <div class="d-flex flex-column">
+      <div
+        v-ripple
+        class="d-flex align-center gap-2 py-4"
+      >
+        <FacebookIcon />
+        <span>Facebook</span>
+      </div>
+
+      <div
+        v-ripple
+        class="d-flex align-center gap-2 py-4"
+      >
+        <TwitterIcon />
+        <span>Twitter</span>
+      </div>
+
+      <div
+        v-ripple
+        class="d-flex align-center gap-2 py-4"
+      >
+        <WhatsappIcon />
+        <span>Whatsapp</span>
+      </div>
+
+      <div
+        v-ripple
+        class="d-flex align-center gap-2 py-4"
+      >
+        <VIcon icon="tabler-copy" />
+        <span>Copy Link</span>
+      </div>
+    </div>
+  </VBottomSheet>
 </template>
 
 <style scoped lang="scss">
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px !important;
+  padding-top: 16px !important;
+  border-radius: 12px 12px 0 0 !important;
+  margin-top: 0px !important;
+  z-index: 10 !important;
+
+  @media (max-width: 768px) {
+    transform: translateY(-24px);
+    background: rgb(var(--v-theme-surface)) !important;
+  }
+}
+
 .mobile-navigation {
   position: fixed;
   z-index: 19;
