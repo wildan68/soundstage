@@ -36,7 +36,7 @@ useIntersectionObserver(
         <PackageList class="flex-1" />
 
         <div class="event-information-wrapper">
-          <VenueMap class="flex-1" />
+          <VenueMap :class="[{ 'flex-1': themeConfig.isTablet }]" />
           <EventInformation class="flex-1" />
         </div>
       </VRow>

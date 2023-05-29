@@ -3,6 +3,7 @@ import { themeConfig } from '@themeConfig'
 
 interface Emit {
   (e: 'change', val: string): void
+  (e: 'change:menu', val: string): void
 }
 
 const emit = defineEmits<Emit>()
@@ -34,11 +35,32 @@ const breadcrumbs = [
 </script>
 
 <template>
-  <VBreadcrumbs :items="breadcrumbs">
-    <template #divider>
-      <VIcon icon="tabler-chevron-right" />
-    </template>
-  </VBreadcrumbs>
+  <VRow
+    no-gutters
+    class="justify-space-between align-center"
+  >
+    <VBreadcrumbs :items="breadcrumbs">
+      <template #divider>
+        <VIcon
+          icon="tabler-chevron-right"
+          size="12px"
+        />
+      </template>
+    </VBreadcrumbs>
+
+    <div
+      v-if="!themeConfig.isMobile"
+      class="guarante-badge"
+    >
+      <VRow
+        no-gutters
+        class="align-center gap-2"
+      >
+        <VIcon icon="tabler-shield-check-filled" />
+        <span>Ticket Guarantee</span>
+      </VRow>
+    </div>
+  </VRow>
 
   <VCard
     ref="summary"
@@ -98,6 +120,7 @@ const breadcrumbs = [
           <VBtn
             variant="tonal"
             size="large"
+            @click="emit('change:menu', 'packages')"
           >
             Show Package
           </VBtn>
@@ -106,3 +129,12 @@ const breadcrumbs = [
     </VCardText>
   </VCard>
 </template>
+
+<style scoped lang="scss">
+.guarante-badge {
+  padding: 8px 24px;
+  background: linear-gradient(90deg, #F15C59, #F4BC67) 100%;
+  border-radius: 12px;
+  color: #fff;
+}
+</style>
