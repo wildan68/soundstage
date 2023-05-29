@@ -83,6 +83,7 @@ const onError = () => {
           v-model="email"
           :rules="[requiredValidator, emailValidator, onError]"
           label="Enter your email"
+          density="comfortable"
         />
 
         <VTextField
@@ -91,6 +92,7 @@ const onError = () => {
           :rules="[requiredValidator, onError]"
           :type="isPasswordVisible ? 'text' : 'password'"
           :append-inner-icon="!isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+          density="comfortable"
           @click:append-inner="isPasswordVisible = !isPasswordVisible"
         />
 

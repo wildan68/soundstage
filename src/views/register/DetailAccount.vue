@@ -72,18 +72,21 @@ const onSubmit = async () => {
       label="Enter your email"
       readonly
       persistent-placeholder
+      density="comfortable"
     />
 
     <VTextField
       v-model="registerForm.firstname"
       label="First Name"
       :rules="[requiredValidator]"
+      density="comfortable"
     />
 
     <VTextField
       v-model="registerForm.lastname"
       label="Last Name"
       :rules="[requiredValidator]"
+      density="comfortable"
     />
 
     <div>
@@ -93,6 +96,7 @@ const onSubmit = async () => {
         :type="isPasswordVisible ? 'text' : 'password'"
         :append-inner-icon="!isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
         :rules="[requiredValidator]"
+        density="comfortable"
         @click:append-inner="isPasswordVisible = !isPasswordVisible"
       />
       <span class="text-sm text-secondary">
@@ -105,6 +109,7 @@ const onSubmit = async () => {
       label="Phone Number"
       prefix="+62"
       :rules="[requiredValidator, integerValidator]"
+      density="comfortable"
     />
 
     <VBtn

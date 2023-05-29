@@ -66,6 +66,7 @@ const onError = () => {
       v-model="registerForm.email"
       label="Enter your email"
       :rules="[requiredValidator, emailValidator, onError]"
+      density="comfortable"
     />
 
     <VBtn
