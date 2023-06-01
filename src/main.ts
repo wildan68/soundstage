@@ -22,7 +22,7 @@ import bottomSheet from '@/plugins/bottom-sheet'
 import App from '@/App.vue'
 import router from '@/router'
 
-const app = createApp(App)
+export const app = createApp(App)
 
 const pinia = createPinia()
 

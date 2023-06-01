@@ -14,11 +14,19 @@ const { y } = useWindowScroll()
 
 const headerShowing = ref<boolean>(false)
 
-const hideHeader = computed(() => route.meta.hideHeader ? !themeConfig.isMobile && route.meta.hideHeader : true)
-
-const hideNavbar = computed(() => themeConfig.isMobile ? route.meta.hideNavbar ? !themeConfig.isMobile && route.meta.hideNavbar : true : false)
+const [
+  hideHeader,
+  hideNavbar,
+  hideFooter,
+] = reactive([
+  computed(() => route.meta.hideHeader ? !themeConfig.isMobile && route.meta.hideHeader : true),
+  ref(themeConfig.isMobile ? route.meta.hideNavbar ? !themeConfig.isMobile && route.meta.hideNavbar : true : false),
+  computed(() => themeConfig.isMobile ? route.meta.hideFooter ? !themeConfig.isMobile && route.meta.hideFooter : true : true),
+])
 
 watch(y, val => val > 100 ? headerShowing.value = true : headerShowing.value = false)
+
+watch(() => route.meta.hideNavbar, val => !val ? hideNavbar.value = true : hideNavbar.value = false)
 
 const isHome = computed(() => route.path === '/')
 </script>
@@ -51,10 +59,15 @@ const isHome = computed(() => route.path === '/')
 
       <!-- 👉 Pages -->
       <RouterView v-slot="{ Component }">
-        <Component :is="Component" />
+        <VSlideXTransition>
+          <Component
+            :is="Component"
+            @navbar="(e: boolean) => hideNavbar = e"
+          />
+        </VSlideXTransition>
       </RouterView>
 
-      <Footer />
+      <Footer v-if="hideFooter" />
 
       <!-- 👉 Mobile Navbar -->
       <MobileNavbar v-if="hideNavbar" />

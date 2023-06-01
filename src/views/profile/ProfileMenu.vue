@@ -1,22 +1,14 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
 import type { Router } from 'vue-router'
+import { profileMenu } from './profile'
+import type { ProfileMenu } from './types'
 
 interface Props {
   activeMenu: string
 }
 
 interface Emit {
-  (e: 'change', val: { key: string; cmp?: Component }): void
-}
-
-interface ProfileMenu {
-  key: string
-  label: string
-  icon: string
-  component?: Component
-  action?: () => void
-  separator?: boolean
+  (e: 'change', val: Pick<ProfileMenu, 'key' | 'component'>): void
 }
 
 defineProps<Props>()
@@ -25,62 +17,7 @@ const emit = defineEmits<Emit>()
 
 const router: Router = useRouter()
 
-const profileMenu: ProfileMenu[] = [
-  {
-    key: 'account',
-    label: 'Account',
-    icon: 'tabler-user-circle',
-    component: defineAsyncComponent(() => import('./component/Account.vue')),
-  }, {
-    key: 'my-order',
-    label: 'My Order',
-    icon: 'tabler-ticket',
-    component: defineAsyncComponent(() => import('./component/MyOrder.vue')),
-  }, {
-    key: 'my-coupon',
-    label: 'My Coupon',
-    icon: 'tabler-discount-2',
-    component: defineAsyncComponent(() => import('./component/MyCoupon.vue')),
-  }, {
-    key: 'bookmark',
-    label: 'Bookmark',
-    icon: 'tabler-bookmarks',
-    component: defineAsyncComponent(() => import('./component/Bookmark.vue')),
-    separator: true,
-  }, {
-    key: 'event-partner',
-    label: 'Event Partner',
-    icon: 'tabler-award',
-    component: defineAsyncComponent(() => import('./component/EventPartner.vue')),
-  }, {
-    key: 'review',
-    label: 'Review',
-    icon: 'tabler-pencil-minus',
-    component: defineAsyncComponent(() => import('./component/Review.vue')),
-  }, {
-    key: 'refund-list',
-    label: 'Refund List',
-    icon: 'tabler-ticket-off',
-    component: defineAsyncComponent(() => import('./component/RefundList.vue')),
-    separator: true,
-  }, {
-    key: 'settings',
-    label: 'Settings',
-    icon: 'tabler-settings',
-    component: defineAsyncComponent(() => import('./component/Settings.vue')),
-  }, {
-    key: 'hel-center',
-    label: 'Help Center',
-    icon: 'tabler-message-chatbot',
-    action: () => router.push('/help-center'),
-    separator: true,
-  }, {
-    key: 'logout',
-    label: 'Logout',
-    icon: 'tabler-logout',
-    action: () => router.push('/'),
-  },
-]
+const toPage = (path: string) => router.push({ path })
 </script>
 
 <template>
@@ -113,11 +50,12 @@ const profileMenu: ProfileMenu[] = [
           v-ripple
           class="menu-items"
           :class="[{ 'menu-items__active': activeMenu === menu.key }]"
-          @click="menu.component ? emit('change', { key: menu.key, cmp: menu.component }) : menu.action && menu.action()"
+          @click="menu.component ? emit('change', { key: menu.key, component: menu.component }) : menu.to && toPage(menu.to)"
         >
           <VIcon :icon="menu.icon" />
           {{ menu.label }}
         </div>
+
         <VDivider
           v-if="menu.separator"
           class="my-3"
