@@ -10,6 +10,7 @@ import FacebookIcon from '@core/icons/Facebook.vue'
 import TwitterIcon from '@core/icons/Twitter.vue'
 import WhatsappIcon from '@core/icons/Whatsapp.vue'
 import { themeConfig } from '@themeConfig'
+import { useRouterBack } from '@core/app'
 
 const { y } = useWindowScroll()
 
@@ -52,7 +53,7 @@ const changeTabMenu = (val: string) => {
       icon
       color="surface"
       class="mobile-navigation__btn"
-      @click="$router.back()"
+      @click="useRouterBack"
     >
       <VIcon icon="tabler-chevron-left" />
     </VBtn>
@@ -74,6 +75,7 @@ const changeTabMenu = (val: string) => {
       v-if="detailTabMenu"
       :active-key="intersectionKey"
       @change="changeTabMenu"
+      @show:share="shareSheet = !shareSheet"
     />
   </VSlideYTransition>
 
@@ -239,5 +241,6 @@ const changeTabMenu = (val: string) => {
 meta:
   hideHeader: true
   hideNavbar: true
+  hideFooter: true
 </route>
 

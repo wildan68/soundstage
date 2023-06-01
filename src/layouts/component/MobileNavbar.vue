@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import type { Router } from 'vue-router'
+
 interface Navbar {
   icon: string
   title: string
   to: string
 }
+
+const router: Router = useRouter()
 
 const navbarList: Navbar[] = [
   {
@@ -13,13 +17,15 @@ const navbarList: Navbar[] = [
   }, {
     icon: 'tabler-ticket',
     title: 'My Order',
-    to: '/',
+    to: '/my-order',
   }, {
     icon: 'tabler-user',
     title: 'Account',
-    to: '/',
+    to: '/profile',
   },
 ]
+
+const toPage = (path: string) => router.push({ path })
 </script>
 
 <template>
@@ -33,6 +39,7 @@ const navbarList: Navbar[] = [
       :key="nav.title"
       variant="text"
       class="btn-navbar"
+      @click="toPage(nav.to)"
     >
       <VIcon :icon="nav.icon" />
       {{ nav.title }}

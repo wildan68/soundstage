@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TabMenuItems } from '@core/components/types'
+import { themeConfig } from '@themeConfig'
 
 const activeKey = ref<string>('all')
 
@@ -45,6 +46,7 @@ const pagination = reactive({
     <VCard
       title="My Order"
       subtitle="List of tickets that you have purchased"
+      flat="themeConfig.isMobile"
     >
       <VCardText>
         <TabMenu
@@ -55,7 +57,7 @@ const pagination = reactive({
       </VCardText>
     </VCard>
 
-    <VCard>
+    <VCard flat="themeConfig.isMobile">
       <VCardText class="d-flex flex-column gap-4">
         <VCard
           v-for="i in 5"

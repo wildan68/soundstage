@@ -7,6 +7,7 @@ interface Props {
 
 interface Emit {
   (e: 'change', val: string): void
+  (e: 'show:share'): void
 }
 
 const props = defineProps<Props>()
@@ -68,6 +69,7 @@ const menu = [{
           variant="text"
           class="menu-wrapper__navigation__btn"
           color="black"
+          @click="emit('show:share')"
         >
           <VIcon icon="tabler-share" />
         </VBtn>

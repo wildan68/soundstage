@@ -3,6 +3,7 @@ import { Autoplay as VSAutoplay, Navigation as VSNavigation, Pagination as VSPag
 import type { App, Component } from 'vue'
 import navMenu from './navMenu'
 import footer from './footer'
+import { app as _instance } from '@/main'
 import { themeConfig } from '@themeConfig'
 
 export const isLoggedin = ref<boolean>(false)
@@ -68,6 +69,14 @@ export const useSkinConfig = () => {
   }
 
   isDark.value = false
+}
+
+export const useRouterBack = () => {
+  const router = _instance._context.config.globalProperties.$router
+
+  const hasHistory = window.history.length > 2
+
+  hasHistory ? router.back() : router.push('/')
 }
 
 export {

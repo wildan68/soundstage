@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { themeConfig } from '@themeConfig'
+
 const title = ref<string | null>('Mr')
 
 const firstName = ref<string>('Steven')
@@ -11,12 +13,14 @@ const idNumber = ref<string>('526372721828384838')
 <template>
   <div class="d-flex flex-column gap-6">
     <VCard
+      :flat="themeConfig.isMobile"
       title="Let’s, complete your profile"
       subtitle="By completing your profile you will get other attractive promos"
       class="account-card"
     />
 
     <VCard
+      :flat="themeConfig.isMobile"
       title="Detail Account"
       subtitle="Complete your account details"
     >
@@ -24,6 +28,7 @@ const idNumber = ref<string>('526372721828384838')
         <VRow
           no-gutters
           class="gap-6"
+          :class="[{ 'flex-column': themeConfig.isMobile }]"
         >
           <VForm class="flex-1 d-flex flex-column gap-4">
             <VSelect
@@ -54,6 +59,7 @@ const idNumber = ref<string>('526372721828384838')
               Save
             </VBtn>
           </VForm>
+
           <div class="account-info">
             <VCol>
               <div class="text-sm text-secondary">
@@ -80,15 +86,15 @@ const idNumber = ref<string>('526372721828384838')
 
 <style scoped lang="scss">
 .account-card {
-    background: url('@images/vec/coupon-gift.png') no-repeat right center;
-    background-color: rgb(var(--v-theme-surface));
+  background: url('@images/vec/coupon-gift.png') no-repeat right center;
+  background-color: rgb(var(--v-theme-surface));
 }
 
 .account-info {
-    background: rgb(var(--v-theme-background));
-    flex: 1;
-    border-radius: 12px;
-    padding: 24px;
-    height: fit-content;
+  background: rgb(var(--v-theme-background));
+  flex: 1;
+  border-radius: 12px;
+  padding: 24px;
+  height: fit-content;
 }
 </style>
