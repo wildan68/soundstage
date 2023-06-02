@@ -2,6 +2,7 @@
 import type { Router } from 'vue-router'
 import { profileMenu } from './profile'
 import type { ProfileMenu } from './types'
+import { themeConfig } from '@themeConfig'
 
 interface Props {
   activeMenu: string
@@ -22,7 +23,7 @@ const toPage = (path: string) => router.push({ path })
 
 <template>
   <VCard
-    width="275px"
+    :width="themeConfig.isTablet ? '210px' : '275px'"
     height="fit-content"
   >
     <VCardText class="d-flex flex-column gap-3">

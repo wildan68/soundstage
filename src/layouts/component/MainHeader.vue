@@ -3,6 +3,10 @@ import Header from './Header.vue'
 import { themeConfig } from '@themeConfig'
 import { searchBox, searchPlaceholder } from '@/@core/app'
 
+interface Emit {
+  (e: 'open:search'): void
+}
+
 interface CategoryList {
   key: string
   label: string
@@ -10,6 +14,8 @@ interface CategoryList {
   isHover: boolean
   to?: string
 }
+
+const emit = defineEmits<Emit>()
 
 const categoryList = reactive<CategoryList[]>([
   {
@@ -32,11 +38,21 @@ const categoryList = reactive<CategoryList[]>([
     to: '/',
   },
 ])
+
+const onOpenSearch = () => {
+  if (!themeConfig.isMobile) {
+    searchBox.value = true
+    return
+  }
+
+  // eslint-disable-next-line vue/custom-event-name-casing
+  emit('open:search')
+}
 </script>
 
 <template>
   <VSheet class="container-wrapper">
-    <Header />
+    <Header @open:search="onOpenSearch" />
     <VContainer>
       <div class="main-search">
         <div
@@ -53,7 +69,7 @@ const categoryList = reactive<CategoryList[]>([
             persistent-placeholder
             prepend-inner-icon="tabler-search"
             variant="solo"
-            @focus="searchBox = true"
+            @click="onOpenSearch"
           />
 
           <VFadeTransition group>

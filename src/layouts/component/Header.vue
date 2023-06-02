@@ -9,9 +9,15 @@ interface Props {
   transparent: boolean
 }
 
+interface Emit {
+  (e: 'open:search'): void
+}
+
 withDefaults(defineProps<Props>(), {
   transparent: true,
 })
+
+const emit = defineEmits<Emit>()
 
 const store = useAuthStore()
 
@@ -72,6 +78,7 @@ const avatarText = computed<string>(() => {
             variant="text"
             icon
             :class="transparent ? 'text-white-persistent' : 'text-black'"
+            @click="emit('open:search')"
           >
             <VIcon icon="tabler-search" />
           </VBtn>
@@ -165,7 +172,7 @@ const avatarText = computed<string>(() => {
           </VMenu>
 
           <VMenu
-            v-if="isLoggedin"
+            v-if="isLoggedin && !themeConfig.isMobile"
             :close-on-content-click="false"
           >
             <template #activator="{ props }">

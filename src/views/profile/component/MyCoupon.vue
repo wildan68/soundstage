@@ -15,8 +15,8 @@ import NotFoundVec from '@images/vec/not-found.png'
           width="40%"
           class="ml-10"
         />
-        <div class="font-weight-semibold text-2xl text-black">
-          You don't have any coupon yet
+        <div class="font-weight-semibold text-2xl text-black text-center">
+          You don't have any coupon
         </div>
         <VBtn size="x-large">
           See Promo

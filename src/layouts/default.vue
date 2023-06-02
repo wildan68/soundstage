@@ -14,6 +14,8 @@ const { y } = useWindowScroll()
 
 const headerShowing = ref<boolean>(false)
 
+const searchBoxMobile = ref<boolean>(false)
+
 const [
   hideHeader,
   hideNavbar,
@@ -51,20 +53,32 @@ const isHome = computed(() => route.path === '/')
               { header__fixed: isHome },
             ]"
           >
-            <Header :transparent="false" />
+            <Header
+              :transparent="false"
+              @open:search="searchBoxMobile = true"
+            />
           </div>
         </VFadeTransition>
       </Teleport>
-      <MainHeader v-if="isHome" />
+
+      <MainHeader
+        v-if="isHome"
+        @open:search="searchBoxMobile = true"
+      />
+
+      <VSlideYReverseTransition>
+        <SearchBoxMobile
+          v-if="searchBoxMobile"
+          @back="searchBoxMobile = false"
+        />
+      </VSlideYReverseTransition>
 
       <!-- 👉 Pages -->
       <RouterView v-slot="{ Component }">
-        <VSlideXTransition>
-          <Component
-            :is="Component"
-            @navbar="(e: boolean) => hideNavbar = e"
-          />
-        </VSlideXTransition>
+        <Component
+          :is="Component"
+          @navbar="(e: boolean) => hideNavbar = e"
+        />
       </RouterView>
 
       <Footer v-if="hideFooter" />

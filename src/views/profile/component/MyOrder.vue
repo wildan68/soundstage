@@ -42,11 +42,14 @@ const pagination = reactive({
 </script>
 
 <template>
-  <div class="d-flex flex-column gap-6">
+  <div
+    class="order-wrapper"
+    :style="{ width: themeConfig.isTablet ? '200px' : 'auto' }"
+  >
     <VCard
       title="My Order"
       subtitle="List of tickets that you have purchased"
-      flat="themeConfig.isMobile"
+      :flat="themeConfig.isMobile"
     >
       <VCardText>
         <TabMenu
@@ -57,7 +60,7 @@ const pagination = reactive({
       </VCardText>
     </VCard>
 
-    <VCard flat="themeConfig.isMobile">
+    <VCard :flat="themeConfig.isMobile">
       <VCardText class="d-flex flex-column gap-4">
         <VCard
           v-for="i in 5"
@@ -119,4 +122,12 @@ const pagination = reactive({
     </VCard>
   </div>
 </template>
+
+<style scoped lang="scss">
+.order-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+</style>
 
