@@ -27,6 +27,7 @@ const emit = defineEmits<Emit>()
         variant="plain"
         bg-color="background"
         autofocus
+        density="comfortable"
       />
     </div>
 
@@ -50,16 +51,18 @@ const emit = defineEmits<Emit>()
 
 // 👉 Override TextField
 :deep(.v-field__input), :deep(.v-text-field__prefix) {
-  background: rgb(var(--v-theme-background));
-  padding-block: 8px;
+  padding-block: 8px !important;
 }
 
 :deep(.v-field__prepend-inner) {
-  padding: 8px;
+  padding: 8px !important;
 }
 
 :deep(.v-field) {
   border-radius: 99px;
-  overflow: hidden;
+}
+
+:deep(.v-label.v-field-label) {
+  top: 3px !important;
 }
 </style>
