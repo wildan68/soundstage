@@ -62,8 +62,4 @@ const emit = defineEmits<Emit>()
   border-radius: 99px;
   overflow: hidden;
 }
-
-:deep(.v-label.v-field-label) {
-  top: 6px !important;
-}
 </style>
