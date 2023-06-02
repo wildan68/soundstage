@@ -12,6 +12,20 @@ const emit = defineEmits<Emit>()
 const router: Router = useRouter()
 
 const toPage = (path: string) => router.push({ path })
+
+const actionMenu = (menu: ProfileMenu) => {
+  if (menu.component) {
+    emit('open', { key: menu.key, component: menu.component, label: menu.label })
+    return
+  }
+
+  if (menu.to) {
+    toPage(menu.to)
+    return
+  }
+
+  menu.action && menu.action()
+}
 </script>
 
 <template>
@@ -22,7 +36,7 @@ const toPage = (path: string) => router.push({ path })
     <div
       v-ripple
       class="menu-items"
-      @click="menu.component ? emit('open', { key: menu.key, component: menu.component, label: menu.label }) : menu.to && toPage(menu.to)"
+      @click="actionMenu(menu)"
     >
       <VRow
         no-gutters

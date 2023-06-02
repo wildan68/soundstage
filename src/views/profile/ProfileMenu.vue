@@ -19,6 +19,20 @@ const emit = defineEmits<Emit>()
 const router: Router = useRouter()
 
 const toPage = (path: string) => router.push({ path })
+
+const actionMenu = (menu: ProfileMenu) => {
+  if (menu.component) {
+    emit('change', { key: menu.key, component: menu.component })
+    return
+  }
+
+  if (menu.to) {
+    toPage(menu.to)
+    return
+  }
+
+  menu.action && menu.action()
+}
 </script>
 
 <template>
@@ -51,7 +65,7 @@ const toPage = (path: string) => router.push({ path })
           v-ripple
           class="menu-items"
           :class="[{ 'menu-items__active': activeMenu === menu.key }]"
-          @click="menu.component ? emit('change', { key: menu.key, component: menu.component }) : menu.to && toPage(menu.to)"
+          @click="actionMenu(menu)"
         >
           <VIcon :icon="menu.icon" />
           {{ menu.label }}

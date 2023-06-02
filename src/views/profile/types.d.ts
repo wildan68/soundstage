@@ -7,4 +7,5 @@ export interface ProfileMenu {
     component?: Component
     to?: string
     separator?: boolean
+    action?: () => void
 }

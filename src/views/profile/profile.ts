@@ -1,4 +1,7 @@
-import type { ProfileMenu } from './profile.d'
+import type { ProfileMenu } from './types'
+import { useAuthStore } from '@/stores/auth'
+
+const store = useAuthStore()
 
 export const profileMenu: ProfileMenu[] = [
   {
@@ -53,6 +56,6 @@ export const profileMenu: ProfileMenu[] = [
     key: 'logout',
     label: 'Logout',
     icon: 'tabler-logout',
-    to: '/',
+    action: () => store.logout(),
   },
 ]
