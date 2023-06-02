@@ -367,10 +367,6 @@ const avatarText = computed<string>(() => {
   padding-block: 8px;
 }
 
-:deep(.v-field__prepend-inner) {
-  padding: 8px;
-}
-
 :deep(.v-field) {
   border-radius: 99px;
   overflow: hidden;
