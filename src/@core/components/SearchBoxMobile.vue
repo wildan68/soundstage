@@ -63,6 +63,6 @@ const emit = defineEmits<Emit>()
 }
 
 :deep(.v-label.v-field-label) {
-  top: 3px !important;
+  top: 4px !important;
 }
 </style>
