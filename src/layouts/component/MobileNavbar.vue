@@ -25,31 +25,53 @@ const navbarList: Navbar[] = [
   },
 ]
 
+const activePath = computed<string>(() => router.currentRoute.value.path)
+
 const toPage = (path: string) => router.push({ path })
+
+const isActive = (path: string) => activePath.value === path
 </script>
 
 <template>
-  <VBottomNavigation
-    grow
-    height="auto"
-    :style="{ paddingBlock: '14px' }"
-  >
-    <VBtn
+  <div class="navbar-wrapper">
+    <button
       v-for="nav in navbarList"
       :key="nav.title"
+      v-ripple
       variant="text"
-      class="btn-navbar"
+      class="navbar-wrapper__btn"
+      :class="[{ 'navbar-wrapper__btn--active': isActive(nav.to) }]"
       @click="toPage(nav.to)"
     >
       <VIcon :icon="nav.icon" />
       {{ nav.title }}
-    </VBtn>
-  </VBottomNavigation>
+    </button>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.btn-navbar {
-  padding-block: 8px !important;
-  width: fit-content !important;
+.navbar-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgb(var(--v-theme-surface));
+  padding: 8px 24px;
+  display: flex;
+  justify-content: space-around;
+
+  &__btn {
+    padding-block: 8px !important;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  &__btn--active {
+    color: rgb(var(--v-theme-primary)) !important;
+  }
 }
 </style>

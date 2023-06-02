@@ -79,9 +79,10 @@ onMounted(() => afterRender())
           @change="onChangeMenu"
         />
 
-        <div class="flex-1">
-          <Component :is="activeMenu" />
-        </div>
+        <Component
+          :is="activeMenu"
+          class="flex-1"
+        />
       </VRow>
     </VContainer>
   </template>

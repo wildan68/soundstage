@@ -1,6 +1,13 @@
+<script setup lang="ts">
+import { themeConfig } from '@themeConfig'
+</script>
+
 <template>
   <div class="search-box-container">
-    <VCard class="card">
+    <VCard
+      class="card"
+      :flat="themeConfig.isMobile"
+    >
       <VCardText>
         <h4 class="text-black">
           Top Search
@@ -71,12 +78,23 @@
   right: 0;
   margin-block: 12px;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    position: relative;
+    top: 0;
+    margin-block: 0;
+  }
 }
 
 // 👉 Override Card
 .card {
   border-radius: 14px !important;
   box-shadow: 0 0 10px 0 rgb(var(--v-theme-black), 0.1) !important;
+
+  @media (max-width: 768px) {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
 
   &__items-result {
     cursor: pointer;
@@ -93,6 +111,11 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 12px;
   grid-auto-flow: column;
+
+  @media (max-width: 768px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-auto-flow: row;
+  }
 }
 
 // 👉 Override VImg
